@@ -14,6 +14,10 @@ config/name="godot wild jam 36"
 run/main_scene="res://scenes/player.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GlobalVars="*res://utiities/GlobalVars.tscn"
+
 [input]
 
 move_right={
