@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/obstacles/DeadWall.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 458.289, 8.80081 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 173.184, 8.80081 )
+
+[node name="DeadWallTest" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 513.919, 296.665 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 109.203, 532.226 )
+
+[node name="DeadWall" parent="." instance=ExtResource( 1 )]
+position = Vector2( 6.10352e-05, 296.665 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="DeadWall"]
+position = Vector2( 513.919, 0 )
+remote_path = NodePath("../../Camera2D")
+update_rotation = false
+update_scale = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 525.312, 567.966 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2( 674.6, 484.904 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource( 2 )
