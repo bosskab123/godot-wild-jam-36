@@ -1,12 +1,26 @@
 extends KinematicBody2D
+class_name Player
 
-var move_vector: Vector2
+# Movement system
 export(float) var MOVE_SPEED: float = 100
 export(float) var JUMP_SPEED: float = 300
 export(float) var MAX_X_SPEED: float = 300
 export(float) var MAX_Y_SPEED: float = 400
+var move_vector: Vector2
+
+# Energy System
+export(float) var MAX_ENERGY: float = 100
+export(float) var ENERGY_DRAIN_RATE: float = 1 # per sec
+var energy: float = MAX_ENERGY
 
 func _process(delta):
+	movement_input()
+	calculate_energy(delta)
+
+func calculate_energy(delta):
+	energy -= delta * ENERGY_DRAIN_RATE
+
+func movement_input():
 	if Input.is_action_pressed("move_right"):
 		move_vector.x += MOVE_SPEED
 	if Input.is_action_pressed("move_left"):
