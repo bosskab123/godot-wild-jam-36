@@ -13,8 +13,8 @@ func _on_Mud_body_exited(body):
 	if body.name == "Player":
 		player_on_mud = false
 
-func _process(delta):
+func _physics_process(delta):
 	if player_on_mud == true:
 		if player:
-			player.move_vector.x *= SLOW_X_FACTOR
-			player.move_vector.y *= SLOW_Y_FACTOR
+			player.move_vector.x *= SLOW_X_FACTOR*delta
+			player.move_vector.y *= SLOW_Y_FACTOR*delta
