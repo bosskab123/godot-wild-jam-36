@@ -11,13 +11,13 @@ __meta__ = {
 }
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 547.435, 446.619 )
+position = Vector2( 348.759, 252.433 )
 
 [node name="Spring" parent="." instance=ExtResource( 2 )]
-position = Vector2( 635.857, 468.223 )
+position = Vector2( 437.181, 274.037 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2( 515.527, 497.297 )
+position = Vector2( 823.082, 300.866 )
 scale = Vector2( 50, 0.403 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]

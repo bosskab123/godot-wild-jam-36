@@ -1,6 +1,6 @@
 extends Area2D
 
-export(float) var SPRING_FORCE: float = 50
+export(float) var SPRING_FORCE: float = 1000
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
