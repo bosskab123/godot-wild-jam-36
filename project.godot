@@ -12,16 +12,28 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
-"path": "res://scenes/Player.gd"
+"path": "res://scenes/player/Player.gd"
+}, {
+"base": "PlayerState",
+"class": "PlayerMoveState",
+"language": "GDScript",
+"path": "res://scenes/player/PlayerMoveState.gd"
+}, {
+"base": "Node2D",
+"class": "PlayerState",
+"language": "GDScript",
+"path": "res://scenes/player/PlayerState.gd"
 } ]
 _global_script_class_icons={
-"Player": ""
+"Player": "",
+"PlayerMoveState": "",
+"PlayerState": ""
 }
 
 [application]
 
 config/name="godot wild jam 36"
-run/main_scene="res://scenes/Player.tscn"
+run/main_scene="res://scenes/player/Player.tscn"
 config/icon="res://icon.png"
 
 [autoload]
