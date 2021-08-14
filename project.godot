@@ -18,6 +18,10 @@ config/icon="res://icon.png"
 
 GlobalVars="*res://utiities/GlobalVars.tscn"
 
+[debug]
+
+settings/fps/force_fps=60
+
 [input]
 
 move_right={
