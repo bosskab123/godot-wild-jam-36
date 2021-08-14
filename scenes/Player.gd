@@ -11,11 +11,14 @@ var move_vector: Vector2
 # Energy System
 export(float) var MAX_ENERGY: float = 100
 export(float) var ENERGY_DRAIN_RATE: float = 1 # per sec
-var energy: float = MAX_ENERGY
+var energy: float = MAX_ENERGY setget energy_set
 
 func _process(delta):
 	movement_input()
 	calculate_energy(delta)
+
+func energy_set(new_var):
+	energy = clamp(new_var, 0, MAX_ENERGY)
 
 func calculate_energy(delta):
 	energy -= delta * ENERGY_DRAIN_RATE
