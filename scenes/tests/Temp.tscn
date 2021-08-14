@@ -30,7 +30,7 @@ shape = SubResource( 1 )
 position = Vector2( 768.839, 482.385 )
 
 [node name="Apple" parent="." instance=ExtResource( 4 )]
-position = Vector2( 920.159, 406.017 )
+position = Vector2( 917.331, 417.331 )
 
 [node name="DeadWall" parent="." instance=ExtResource( 5 )]
 position = Vector2( 27.0889, 291.705 )
