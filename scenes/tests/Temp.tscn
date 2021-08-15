@@ -28,12 +28,21 @@ position = Vector2( 515.527, 497.297 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource( 1 )
 
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2( 124.951, 352.406 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+shape = SubResource( 1 )
+
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2( 504.465, 186.065 )
+position = Vector2( 762.143, 218.157 )
 rotation = 1.57079
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Mud" parent="." instance=ExtResource( 3 )]
 position = Vector2( 768.839, 482.385 )

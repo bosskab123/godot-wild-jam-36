@@ -16,5 +16,12 @@ func _process(_delta):
 	if player.is_on_floor():
 		change_state.call_func("idle")
 	
-	if wall_check_ray.is_colliding():
+	if wall_check_ray.is_colliding() and is_moving_toward_facing():
 		change_state.call_func("wall_hang")
+
+func is_moving_toward_facing():
+	return (
+		Input.is_action_pressed("move_left") and state_machine.facing == GlobalVars.FACING.LEFT
+		or
+		Input.is_action_pressed("move_right") and state_machine.facing == GlobalVars.FACING.RIGHT
+	)

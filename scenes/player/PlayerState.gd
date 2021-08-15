@@ -42,4 +42,4 @@ func _physics_process(_delta):
 	if is_movement_locked:
 		state_machine.move_vector = Vector2.ZERO
 		
-	player.move_and_slide(state_machine.move_vector, Vector2.UP)
+	state_machine.move_vector = player.move_and_slide(state_machine.move_vector, Vector2.UP)
