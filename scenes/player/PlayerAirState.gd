@@ -13,7 +13,7 @@ func _process(_delta):
 	if Input.is_action_pressed("move_left"):
 		state_machine.move_vector.x -= MOVE_SPEED
 
-	if state_machine.get_parent().is_on_floor():
+	if player.is_on_floor():
 		change_state.call_func("idle")
 	
 	if wall_check_ray.is_colliding():

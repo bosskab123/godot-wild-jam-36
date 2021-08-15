@@ -19,11 +19,17 @@ func exit_state():
 	wall_check_ray.enabled = true
 	
 func _process(_delta):
+	print(state_machine.facing)
+	print(GlobalVars.FACING.LEFT)
+	print(GlobalVars.FACING.RIGHT)
+	print(!Input.is_action_pressed("move_left"))
+	print(!Input.is_action_pressed("move_right"))
 	if ((state_machine.facing == GlobalVars.FACING.LEFT 
 		and !Input.is_action_pressed("move_left"))
 		
 		or (state_machine.facing == GlobalVars.FACING.RIGHT 
 		and !Input.is_action_pressed("move_right"))):
+		print("contrast")
 		change_state.call_func("air")
 	
 	if Input.is_action_just_pressed("jump"):
