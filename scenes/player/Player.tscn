@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/uis/PlayerUI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/player/Player.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/player/PlayerStateMachine.gd" type="Script" id=4]
 [ext_resource path="res://scenes/player/PlayerIdleState.gd" type="Script" id=5]
 [ext_resource path="res://scenes/player/PlayerAirState.gd" type="Script" id=6]
+[ext_resource path="res://scenes/player/PlayerWallHangState.gd" type="Script" id=7]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -26,17 +27,32 @@ shape = SubResource( 1 )
 [node name="PlayerUI" parent="." instance=ExtResource( 1 )]
 player = NodePath("..")
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 2 )
-
 [node name="PlayerStateMachine" type="Node2D" parent="."]
 script = ExtResource( 4 )
 
 [node name="PlayerAirState" type="Node2D" parent="PlayerStateMachine"]
 script = ExtResource( 6 )
+animated_sprite = NodePath("../AnimatedSprite")
+wall_check_ray = NodePath("../WallCheckRay")
 
 [node name="PlayerIdleState" type="Node2D" parent="PlayerStateMachine"]
 script = ExtResource( 5 )
+animated_sprite = NodePath("../AnimatedSprite")
 
 [node name="PlayerMoveState" type="Node2D" parent="PlayerStateMachine"]
+rotation = 1.16744
 script = ExtResource( 3 )
+animated_sprite = NodePath("../AnimatedSprite")
+
+[node name="PlayerWallHangState" type="Node2D" parent="PlayerStateMachine"]
+rotation = 1.16744
+script = ExtResource( 7 )
+animated_sprite = NodePath("../AnimatedSprite")
+wall_check_ray = NodePath("../WallCheckRay")
+
+[node name="WallCheckRay" type="RayCast2D" parent="PlayerStateMachine"]
+enabled = true
+cast_to = Vector2( 12, 0 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="PlayerStateMachine"]
+frames = SubResource( 2 )
