@@ -1,9 +1,6 @@
 extends PlayerState
 class_name PlayerIdleState
 
-func _physics_process(delta):
-	return
-
 func _process(_delta):
 	if Input.is_action_pressed("move_right") || Input.is_action_pressed("move_left"):
 		change_state.call_func("move")

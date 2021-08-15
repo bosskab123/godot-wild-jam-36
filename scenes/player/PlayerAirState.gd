@@ -4,9 +4,6 @@ class_name PlayerAirState
 export(float) var MOVE_SPEED: float = 30
 export(NodePath) onready var wall_check_ray = get_node(wall_check_ray) as RayCast2D
 
-func _physics_process(delta):
-	return
-
 func _process(_delta):
 	if Input.is_action_pressed("move_right"):
 		state_machine.move_vector.x += MOVE_SPEED

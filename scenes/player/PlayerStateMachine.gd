@@ -4,8 +4,6 @@ class_name PlayerStateMachine
 # movement system
 var move_vector: Vector2
 var facing setget set_facing, get_facing
-export(float) var MAX_X_SPEED: float = 300
-export(float) var MAX_Y_SPEED: float = 400
 
 var state#: PlayerState
 onready var states: Dictionary = {

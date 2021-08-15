@@ -9,24 +9,27 @@ var side_of_wall: int # determine which side is the wall on enter state
 
 func enter_state():
 	.enter_state()
+	state_machine.move_vector = Vector2.ZERO
 	wall_check_ray.enabled = false
 	side_of_wall = state_machine.facing
-	is_movement_locked = true
 
 func exit_state():
 	.exit_state()
-	is_movement_locked = false
 	state_machine.move_vector += DETACH_VECTOR * Vector2(-state_machine.facing, 1)
 	yield(get_tree().create_timer(WALL_HANG_COOLDOWN), "timeout")
 	wall_check_ray.enabled = true
-	
+
+# this disables normal physics when wallhang
+func physics_process(delta):
+	pass
+
 func _process(_delta):
 	if is_not_moving_toward_wall():
 		change_state.call_func("air")
 	
 	if Input.is_action_just_pressed("jump"):
-		change_state.call_func("air")
 		state_machine.move_vector += WALL_JUMP_VECTOR * Vector2(-state_machine.facing, 1)
+		change_state.call_func("air")
 
 func is_not_moving_toward_wall():
 	return(
