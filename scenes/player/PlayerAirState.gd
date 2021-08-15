@@ -16,6 +16,5 @@ func _process(_delta):
 	if state_machine.get_parent().is_on_floor():
 		change_state.call_func("idle")
 	
-	# Check wall
 	if wall_check_ray.is_colliding():
 		change_state.call_func("wall_hang")
