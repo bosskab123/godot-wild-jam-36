@@ -13,9 +13,39 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://scenes/player/Player.gd"
+}, {
+"base": "PlayerState",
+"class": "PlayerAirState",
+"language": "GDScript",
+"path": "res://scenes/player/PlayerAirState.gd"
+}, {
+"base": "PlayerState",
+"class": "PlayerIdleState",
+"language": "GDScript",
+"path": "res://scenes/player/PlayerIdleState.gd"
+}, {
+"base": "PlayerState",
+"class": "PlayerMoveState",
+"language": "GDScript",
+"path": "res://scenes/player/PlayerMoveState.gd"
+}, {
+"base": "Node2D",
+"class": "PlayerState",
+"language": "GDScript",
+"path": "res://scenes/player/PlayerState.gd"
+}, {
+"base": "Node2D",
+"class": "PlayerStateMachine",
+"language": "GDScript",
+"path": "res://scenes/player/PlayerStateMachine.gd"
 } ]
 _global_script_class_icons={
-"Player": ""
+"Player": "",
+"PlayerAirState": "",
+"PlayerIdleState": "",
+"PlayerMoveState": "",
+"PlayerState": "",
+"PlayerStateMachine": ""
 }
 
 [application]

@@ -4,9 +4,12 @@
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/obstacles/Mud.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/items/Apple.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/obstacles/DeadWall.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 525.662, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 190.831, 10 )
 
 [node name="Node2D" type="Node2D"]
 __meta__ = {
@@ -21,16 +24,19 @@ position = Vector2( 635.857, 468.223 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2( 515.527, 497.297 )
-scale = Vector2( 50, 0.403 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource( 1 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2( 504.465, 186.065 )
+rotation = 1.57079
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource( 2 )
 
 [node name="Mud" parent="." instance=ExtResource( 3 )]
 position = Vector2( 768.839, 482.385 )
 
 [node name="Apple" parent="." instance=ExtResource( 4 )]
 position = Vector2( 917.331, 417.331 )
-
-[node name="DeadWall" parent="." instance=ExtResource( 5 )]
-position = Vector2( 27.0889, 291.705 )
