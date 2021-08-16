@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/tests/ChunkRow2Test.gd" type="Script" id=1]
+[ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=2]
+
+[node name="ChunkRow2Test" type="Node"]
+script = ExtResource( 1 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 60.7043, 148.859 )
+
+[node name="ChunkLabel" type="Label" parent="."]
+margin_left = 18.8775
+margin_top = 14.1581
+margin_right = 58.8775
+margin_bottom = 28.1581
+__meta__ = {
+"_edit_use_anchors_": false
+}
