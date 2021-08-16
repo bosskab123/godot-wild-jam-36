@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/MainGame.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 464 )
+
+[node name="MainGame" type="Node2D"]
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 0.0, 240.0, 480.0 ],
+"_edit_vertical_guides_": [ 0.0, 480.0, 960.0 ]
+}
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 48, 336 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+position = Vector2( -256, -160 )
+remote_path = NodePath("../../Camera2D")
+
+[node name="Row2SpawnPosition" type="Position2D" parent="."]
+
+[node name="Row1SpawnPosition" type="Position2D" parent="."]
+position = Vector2( 0, 240 )
+
+[node name="SpawnLine" type="Area2D" parent="."]
+position = Vector2( 960, 240 )
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnLine"]
+position = Vector2( -960, 0 )
+shape = SubResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( -208, 176 )
+anchor_mode = 0
+current = true
+zoom = Vector2( 0.5, 0.5 )
+
+[connection signal="body_entered" from="SpawnLine" to="." method="_on_SpawnLine_body_entered"]

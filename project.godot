@@ -57,7 +57,7 @@ _global_script_class_icons={
 [application]
 
 config/name="godot wild jam 36"
-run/main_scene="res://scenes/player/Player.tscn"
+run/main_scene="res://scenes/uis/MainMenuUI.tscn"
 config/icon="res://icon.png"
 
 [autoload]

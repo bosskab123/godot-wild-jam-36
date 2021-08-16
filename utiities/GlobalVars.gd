@@ -1,4 +1,9 @@
 extends Node
 
-var GRAVITY :float = 10
+var ROWS_NUMBER: int = 2
+var BLOCK_SIZE: int = 16
+var CHUNK_WIDTH: int = 15 * BLOCK_SIZE
+var CHUNK_LENGTH: int = 30 * BLOCK_SIZE
+
+var GRAVITY: float = 10
 enum FACING {LEFT = -1, RIGHT = 1}
