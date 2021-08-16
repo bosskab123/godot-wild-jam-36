@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/items/Apple.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/ForsestTileMap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/obstacles/Spring.tscn" type="PackedScene" id=3]
+
+[node name="Chunk3Row2" type="Node2D"]
+
+[node name="ForsestTileMap" parent="." instance=ExtResource( 2 )]
+tile_data = PoolIntArray( 262148, 0, 0, 262149, 0, 2, 327684, 0, 65536, 327685, 0, 65539, 393220, 0, 65536, 393221, 0, 65539, 458756, 0, 65536, 458757, 0, 65538, 458771, 3, 0, 524292, 0, 131072, 524293, 0, 131074, 851968, 0, 0, 851969, 0, 1, 851970, 0, 2, 851981, 0, 0, 851982, 0, 2, 851993, 0, 0, 851994, 0, 131076, 851995, 0, 1, 851996, 0, 131076, 851997, 0, 2, 917504, 0, 131072, 917505, 0, 131073, 917506, 0, 131074, 917517, 0, 131072, 917518, 0, 131074, 917529, 0, 131072, 917530, 0, 4, 917531, 0, 4, 917532, 0, 131073, 917533, 0, 131074 )
+
+[node name="Apple" parent="." instance=ExtResource( 1 )]
+position = Vector2( 160, 96 )
+
+[node name="Apple2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 440, 192 )
+
+[node name="Spring" parent="." instance=ExtResource( 3 )]
+position = Vector2( 24, 200 )
+
+[node name="Spring2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 224, 200 )
