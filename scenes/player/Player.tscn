@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/uis/PlayerUI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/player/Player.gd" type="Script" id=2]
@@ -7,8 +7,11 @@
 [ext_resource path="res://scenes/player/PlayerIdleState.gd" type="Script" id=5]
 [ext_resource path="res://scenes/player/PlayerAirState.gd" type="Script" id=6]
 [ext_resource path="res://scenes/player/PlayerWallHangState.gd" type="Script" id=7]
+[ext_resource path="res://assets/sprites/Tiny Platformer - Forest Asset Pack/Sprites/Player/idle.png" type="Texture" id=8]
 
 [sub_resource type="CapsuleShape2D" id=1]
+radius = 8.0
+height = 12.0
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -54,7 +57,12 @@ wall_check_ray = NodePath("../WallCheckRay")
 
 [node name="WallCheckRay" type="RayCast2D" parent="PlayerStateMachine"]
 enabled = true
-cast_to = Vector2( 12, 0 )
+cast_to = Vector2( 10, 0 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="PlayerStateMachine"]
 frames = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 10.617, 8, 16.383, 27 )
