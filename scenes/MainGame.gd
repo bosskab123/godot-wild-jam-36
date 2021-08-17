@@ -10,6 +10,10 @@ var showing_chunk_number: Array = []
 var available_chunks: Array = []
 
 func _ready():
+	# Setup SpawnPosition for each row
+	row_position_map[GlobalVars.ROWS_NUMBER-1].position.y = 0
+	for row in range(GlobalVars.ROWS_NUMBER-2,0):
+		row_position_map[row].position.y = row_position_map[row+1].position.y + GlobalVars.PADDING_WIDTH + GlobalVars.CHUNK_WIDTH
 	# Setup available_chunks to be reposition later
 	for number in range(1,GlobalVars.CHUNKS_NUMBER+1):
 		available_chunks.append(number)
@@ -44,6 +48,12 @@ func add_chunk():
 func _on_SpawnLine_body_entered(body):
 	if body.name != "Player":
 		return
+	# Adjust the showing_chunk_number to be size less than 4
+	if len(showing_chunk_number) > 4:
+		var chunk_number = showing_chunk_number.pop_front()
+		available_chunks.append(chunk_number)
+		# Adjust Deadwall position
+		$DeadWall.position.x = (total_chunk-2) * GlobalVars.CHUNK_LENGTH
 	# Reposition a chunk for the next one
 	add_chunk()	
 	# Move the SpawnLine

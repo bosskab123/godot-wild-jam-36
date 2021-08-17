@@ -9,11 +9,11 @@ var chunk_rows: Array = [] # Each element Contains array of chunkRow
 var initial_chunk_scene: PackedScene = preload("res://scenes/chunks/InitialChunk.tscn")
 
 func _ready():
-	load_chunk()
 	connect("game_start", self, "on_game_start")
 	connect("game_over", self, "on_game_over")
 
 func load_chunk():
+	chunk_rows = []
 	for row in range(1,GlobalVars.ROWS_NUMBER+1):
 		var chunk_row = []
 		for chunk in range(1,GlobalVars.CHUNKS_NUMBER+1):
@@ -23,6 +23,8 @@ func load_chunk():
 		chunk_rows.append(chunk_row)
 
 func on_game_start():
+	get_tree().paused = false
+	load_chunk()
 	get_tree().change_scene_to(GAME_SCENE)
 
 func on_game_over():

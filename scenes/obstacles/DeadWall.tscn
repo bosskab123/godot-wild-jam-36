@@ -6,7 +6,9 @@
 extents = Vector2( 39.4249, 370.023 )
 
 [node name="DeadWall" type="Area2D"]
+pause_mode = 2
 position = Vector2( 0, 300 )
+z_index = 99
 collision_layer = 0
 script = ExtResource( 1 )
 
