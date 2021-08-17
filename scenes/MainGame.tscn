@@ -18,7 +18,7 @@ __meta__ = {
 }
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 100, 360 )
+position = Vector2( 196, 360 )
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 position = Vector2( -256, -160 )
@@ -43,13 +43,13 @@ position = Vector2( 485, 240 )
 shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( -156, 200 )
+position = Vector2( -60, 200 )
 anchor_mode = 0
 current = true
 zoom = Vector2( 0.5, 0.5 )
 
 [node name="DeadWall" parent="." instance=ExtResource( 3 )]
-position = Vector2( -112, 280 )
+position = Vector2( -16, 280 )
 
 [connection signal="body_entered" from="SpawnLine" to="." method="_on_SpawnLine_body_entered"]
 [connection signal="body_entered" from="DestroyLine" to="." method="_on_DestroyLine_body_entered"]
