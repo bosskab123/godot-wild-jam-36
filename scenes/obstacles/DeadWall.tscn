@@ -7,8 +7,7 @@ extents = Vector2( 39.4249, 370.023 )
 
 [node name="DeadWall" type="Area2D"]
 position = Vector2( 0, 300 )
-collision_layer = 32
-collision_mask = 32
+collision_layer = 0
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
