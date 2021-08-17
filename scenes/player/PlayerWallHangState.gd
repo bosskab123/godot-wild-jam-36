@@ -9,6 +9,7 @@ var side_of_wall: int # determine which side is the wall on enter state
 
 func enter_state():
 	.enter_state()
+	animated_sprite.play("wall_hang")
 	state_machine.move_vector = Vector2.ZERO
 	wall_check_ray.enabled = false
 	side_of_wall = state_machine.facing

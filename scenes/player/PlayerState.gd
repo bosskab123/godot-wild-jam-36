@@ -20,10 +20,12 @@ func _ready():
 	player = owner
 
 func enter_state():
+	# print("enter: ", name)
 	set_physics_process(true)
 	set_process(true)
 
 func exit_state():
+	# print("exit: ", name)
 	set_physics_process(false)
 	set_process(false)
 

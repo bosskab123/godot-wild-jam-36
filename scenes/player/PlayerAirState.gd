@@ -9,12 +9,20 @@ func _process(_delta):
 		state_machine.move_vector.x += MOVE_SPEED
 	if Input.is_action_pressed("move_left"):
 		state_machine.move_vector.x -= MOVE_SPEED
-
+	
+	check_jump_or_fall_anim()
+	
 	if player.is_on_floor():
 		change_state.call_func("idle")
 	
 	if wall_check_ray.is_colliding() and is_moving_toward_facing():
 		change_state.call_func("wall_hang")
+
+func check_jump_or_fall_anim():
+	if state_machine.move_vector.y >= 5 and animated_sprite.animation != "fall":
+		animated_sprite.play("fall")
+	elif state_machine.move_vector.y < 5 and animated_sprite.animation != "jump":
+		animated_sprite.play("jump")
 
 func is_moving_toward_facing():
 	return (

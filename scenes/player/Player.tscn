@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scenes/uis/PlayerUI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/player/Player.gd" type="Script" id=2]
@@ -8,17 +8,95 @@
 [ext_resource path="res://scenes/player/PlayerAirState.gd" type="Script" id=6]
 [ext_resource path="res://scenes/player/PlayerWallHangState.gd" type="Script" id=7]
 [ext_resource path="res://assets/sprites/Tiny Platformer - Forest Asset Pack/Sprites/Player/idle.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/Tiny Platformer - Forest Asset Pack/Sprites/Player/fall.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/Tiny Platformer - Forest Asset Pack/Sprites/Player/walk.png" type="Texture" id=10]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 8.0
 height = 12.0
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 8 )
+region = Rect2( 35, 0, 35, 43 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 35, 43 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 8 )
+region = Rect2( 70, 0, 35, 43 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 8 )
+region = Rect2( 105, 0, 35, 43 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 8 )
+region = Rect2( 140, 0, 35, 43 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 35, 43 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 10 )
+region = Rect2( 35, 0, 35, 43 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 35, 43 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 10 )
+region = Rect2( 35, 0, 35, 43 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 10 )
+region = Rect2( 70, 0, 35, 43 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 10 )
+region = Rect2( 105, 0, 35, 43 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 10 )
+region = Rect2( 140, 0, 35, 43 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 10 )
+region = Rect2( 175, 0, 35, 43 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 10 )
+region = Rect2( 0, 0, 35, 43 )
+
+[sub_resource type="SpriteFrames" id=15]
 animations = [ {
-"frames": [  ],
+"frames": [ SubResource( 3 ), SubResource( 2 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
-"name": "default",
+"name": "idle",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 17 ) ],
+"loop": true,
+"name": "fall",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 16 ) ],
+"loop": true,
+"name": "wall_hang",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 18 ) ],
+"loop": true,
+"name": "jump",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 9 ) ],
+"loop": true,
+"name": "move",
+"speed": 8.0
 } ]
 
 [node name="Player" type="KinematicBody2D"]
@@ -60,9 +138,6 @@ enabled = true
 cast_to = Vector2( 10, 0 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="PlayerStateMachine"]
-frames = SubResource( 2 )
-
-[node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 8 )
-region_enabled = true
-region_rect = Rect2( 10.617, 8, 16.383, 27 )
+position = Vector2( -2, -1 )
+frames = SubResource( 15 )
+animation = "idle"

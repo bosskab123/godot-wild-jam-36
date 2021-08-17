@@ -1,6 +1,13 @@
 extends PlayerState
 class_name PlayerIdleState
 
+func enter_state():
+	.enter_state()
+	animated_sprite.play("idle")
+
+func physics_process(delta):
+	.physics_process(delta)
+
 func _process(_delta):
 	if Input.is_action_pressed("move_right") || Input.is_action_pressed("move_left"):
 		change_state.call_func("move")

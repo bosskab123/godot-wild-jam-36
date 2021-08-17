@@ -3,6 +3,10 @@ class_name PlayerMoveState
 
 export(float) var MOVE_SPEED: float = 100
 
+func enter_state():
+	.enter_state()
+	animated_sprite.play("move")
+	
 func _process(_delta):
 	if Input.is_action_pressed("move_right"):
 		state_machine.move_vector.x += MOVE_SPEED
