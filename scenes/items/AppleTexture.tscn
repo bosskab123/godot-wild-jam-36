@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/items/AppleSpin.gd" type="Script" id=1]
+[ext_resource path="res://assets/model/apple.fbx" type="PackedScene" id=2]
+
+[node name="AppleTexture" type="Spatial"]
+
+[node name="apple" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.988263, 0.0522342, 0.143513, 0, 0.939693, -0.342019, -0.152723, 0.338005, 0.928665, 0, -0.091, 0 )
+script = ExtResource( 1 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.4 )
+fov = 37.3
+
+[node name="OmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.191314, 0 )
+light_color = Color( 0.239216, 0.819608, 0.219608, 1 )
+light_energy = 5.0
+omni_range = 0.2
+omni_attenuation = 5.09824
+omni_shadow_mode = 0
+
+[node name="OmniLight2" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, -0.031, 0.128 )
+light_color = Color( 0.784314, 0.168627, 0.168627, 1 )
+omni_range = 0.2
+omni_attenuation = 1.46409
+omni_shadow_mode = 0
+
+[node name="OmniLight3" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, -0.031, 0.103 )
+light_color = Color( 0.784314, 0.168627, 0.168627, 1 )
+omni_range = 0.2
+omni_attenuation = 1.46409
+
+[node name="OmniLight4" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.189985 )
+light_color = Color( 0.784314, 0.168627, 0.168627, 1 )
+omni_range = 0.2
+omni_attenuation = 1.46409
