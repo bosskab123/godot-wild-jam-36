@@ -6,7 +6,7 @@
 [node name="AppleTexture" type="Spatial"]
 
 [node name="apple" parent="." instance=ExtResource( 2 )]
-transform = Transform( 0.133681, 0.338951, 0.931262, 0, 0.939693, -0.342019, -0.991025, 0.045721, 0.125623, 0, -0.091, 0 )
+transform = Transform( 0.90143, -0.148073, -0.406833, 0, 0.939693, -0.342019, 0.432938, 0.308308, 0.84707, 0, -0.091, 0 )
 script = ExtResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]

@@ -6,6 +6,7 @@ var GOOD_APPLE_ENERGY: float = 40
 var BAD_APPLE_ENERGY: float = -40
 var energy: float = GOOD_APPLE_ENERGY
 var REDUCED_SIZE_FACTOR: float = 0.75
+var FADEOUT_TIME: float = 0.5
 
 func _on_Apple_body_entered(body: Node2D):
 	match body.name:
@@ -24,6 +25,7 @@ func player_eat_Apple():
 func worm_eat_Apple(worm: Node2D):
 	energy = BAD_APPLE_ENERGY
 	self.scale *= REDUCED_SIZE_FACTOR
-	worm.eating = true
+	worm.is_eating = true
 	# Change sprite
+	$Sprite.material.set_shader_param("weight", 1)
 	
