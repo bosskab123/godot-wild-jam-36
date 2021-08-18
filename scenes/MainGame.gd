@@ -12,8 +12,8 @@ var available_chunks: Array = []
 func _ready():
 	# Setup SpawnPosition for each row
 	row_position_map[GlobalVars.ROWS_NUMBER-1].position.y = 0
-	for row in range(GlobalVars.ROWS_NUMBER-2,0):
-		row_position_map[row].position.y = row_position_map[row+1].position.y + GlobalVars.PADDING_WIDTH + GlobalVars.CHUNK_WIDTH
+	for row in range(GlobalVars.ROWS_NUMBER-2,-1,-1):
+		row_position_map[row].position.y = row_position_map[row+1].position.y + (GlobalVars.ROWS_NUMBER-1) * (GlobalVars.PADDING_WIDTH + GlobalVars.CHUNK_WIDTH)
 	# Setup available_chunks to be reposition later
 	for number in range(1,GlobalVars.CHUNKS_NUMBER+1):
 		available_chunks.append(number)
@@ -24,7 +24,7 @@ func _ready():
 	# Initialize 3 initial chunks to be the starting point
 	for block in range(3):
 		var initial_chunk_instance = GameManager.initial_chunk_scene.instance()
-		initial_chunk_instance.position.x = block * GlobalVars.CHUNK_LENGTH
+		initial_chunk_instance.position.x = block * (GlobalVars.CHUNK_LENGTH + GlobalVars.PADDING_LENGTH)
 		initial_chunk_instance.position.y = row_position_map[0].position.y
 		add_child(initial_chunk_instance)
 	# Add Deadwall at the origin
@@ -40,7 +40,7 @@ func add_chunk():
 	showing_chunk_number.append(chunk_number)
 	# Reposition the added chunk
 	for row in range(GlobalVars.ROWS_NUMBER):
-		GameManager.chunk_rows[row][chunk_number-1].position.x = total_chunk * GlobalVars.CHUNK_LENGTH
+		GameManager.chunk_rows[row][chunk_number-1].position.x = total_chunk * (GlobalVars.CHUNK_LENGTH + GlobalVars.PADDING_LENGTH)
 		GameManager.chunk_rows[row][chunk_number-1].position.y = row_position_map[row].position.y
 	# Increase the number of total chunk
 	total_chunk += 1
