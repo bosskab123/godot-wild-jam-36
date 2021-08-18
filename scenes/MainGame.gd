@@ -30,7 +30,7 @@ func _ready():
 	# Add Deadwall at the origin
 	
 	# Set up spawnline
-	$SpawnLine.position.x = GlobalVars.CHUNK_LENGTH * 2
+	$SpawnLine.position.x = (GlobalVars.CHUNK_LENGTH + GlobalVars.PADDING_LENGTH) * 2
 		
 func add_chunk():
 	# Random a chunk to be added
