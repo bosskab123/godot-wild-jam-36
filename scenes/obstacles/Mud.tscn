@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/obstacles/Mud.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/dirt/dirt-1.png" type="Texture" id=2]
-[ext_resource path="res://assets/sprites/dirt/dirt-3.png" type="Texture" id=3]
-[ext_resource path="res://assets/sprites/dirt/dirt-2.png" type="Texture" id=4]
-[ext_resource path="res://assets/sprites/dirt/dirt-0.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/dirt/mud-1.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/dirt/mud-3.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/dirt/mud-2.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/dirt/mud-0.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 2 )
@@ -33,7 +33,6 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "pressed"
-frame = 3
 
 [connection signal="body_entered" from="." to="." method="_on_Mud_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Mud_body_exited"]
