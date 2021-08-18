@@ -14,10 +14,9 @@ func _ready():
 func _physics_process(delta):
 	if is_eating:
 		queue_free()
-	move_vector += Vector2.DOWN * GlobalVars.GRAVITY
-	move_vector = move_and_slide(move_vector, Vector2.UP)
-	
 	if is_jumping:
+		move_vector += Vector2.DOWN * GlobalVars.GRAVITY
+		move_vector = move_and_slide(move_vector, Vector2.UP)
 		check_animation()
 
 func check_animation():
@@ -31,6 +30,7 @@ func check_animation():
 func _on_Area2D_body_entered(body):
 	if body.name == "Player" and !is_jumping:
 		move_vector = calculate_jump_to_apple_vector()
+		rotation = 0
 		is_jumping = true
 	
 func calculate_jump_to_apple_vector() -> Vector2:
