@@ -1,13 +1,12 @@
 extends Area2D
 
-export(float) var SPRING_FORCE: float = 1000
-onready var player = get_tree().get_root().find_node("Player",true,false) as Player
+export(float) var SPRING_FORCE: float = 2500
 
 func _on_Spring_body_entered(body):
-	if body == player:
-		player.move_vector += Vector2.UP * SPRING_FORCE
+	if body.name == "Player":
+		body.move_vector += Vector2.UP * SPRING_FORCE
 		$AnimatedSprite.play("stretch")
 
 func _on_Spring_body_exited(body):
-	if body == player:
+	if body.name == "Player":
 		$AnimatedSprite.play("shrink")

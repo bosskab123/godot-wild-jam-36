@@ -53,12 +53,11 @@ func _on_SpawnLine_body_entered(body):
 		var chunk_number = showing_chunk_number.pop_front()
 		available_chunks.append(chunk_number)
 		# Adjust Deadwall position
-		$DeadWall.position.x = (total_chunk-2) * GlobalVars.CHUNK_LENGTH
+		$DeadWall.position.x = (total_chunk-2) * (GlobalVars.CHUNK_LENGTH + GlobalVars.PADDING_LENGTH)
 	# Reposition a chunk for the next one
 	add_chunk()	
 	# Move the SpawnLine
-	$SpawnLine.position.x += GlobalVars.CHUNK_LENGTH
-
+	$SpawnLine.position.x += GlobalVars.CHUNK_LENGTH + GlobalVars.PADDING_LENGTH
 
 func _on_DestroyLine_body_entered(body):
 	if body.name != "DeadWall":
@@ -67,4 +66,4 @@ func _on_DestroyLine_body_entered(body):
 	var chunk_number = showing_chunk_number.pop_front()
 	available_chunks.append(chunk_number)
 	# Move the DestroyLine
-	$DestroyLine.position.x += GlobalVars.CHUNK_LENGTH
+	$DestroyLine.position.x += GlobalVars.CHUNK_LENGTH + GlobalVars.PADDING_LENGTH

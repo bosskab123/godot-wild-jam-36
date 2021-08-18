@@ -15,11 +15,11 @@
 radius = 8.0
 height = 12.0
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 8 )
 region = Rect2( 35, 0, 35, 43 )
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 8 )
 region = Rect2( 0, 0, 35, 43 )
 
@@ -35,68 +35,68 @@ region = Rect2( 105, 0, 35, 43 )
 atlas = ExtResource( 8 )
 region = Rect2( 140, 0, 35, 43 )
 
-[sub_resource type="AtlasTexture" id=17]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 9 )
 region = Rect2( 0, 0, 35, 43 )
 
-[sub_resource type="AtlasTexture" id=16]
+[sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 10 )
 region = Rect2( 35, 0, 35, 43 )
-
-[sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 8 )
-region = Rect2( 0, 0, 35, 43 )
-
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 10 )
-region = Rect2( 35, 0, 35, 43 )
-
-[sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 10 )
-region = Rect2( 70, 0, 35, 43 )
-
-[sub_resource type="AtlasTexture" id=12]
-atlas = ExtResource( 10 )
-region = Rect2( 105, 0, 35, 43 )
-
-[sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 10 )
-region = Rect2( 140, 0, 35, 43 )
-
-[sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 10 )
-region = Rect2( 175, 0, 35, 43 )
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 10 )
+region = Rect2( 70, 0, 35, 43 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 10 )
+region = Rect2( 105, 0, 35, 43 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 10 )
+region = Rect2( 140, 0, 35, 43 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 10 )
+region = Rect2( 175, 0, 35, 43 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 10 )
 region = Rect2( 0, 0, 35, 43 )
 
-[sub_resource type="SpriteFrames" id=15]
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 35, 43 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 10 )
+region = Rect2( 35, 0, 35, 43 )
+
+[sub_resource type="SpriteFrames" id=16]
 animations = [ {
-"frames": [ SubResource( 3 ), SubResource( 2 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
 "name": "idle",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 17 ) ],
+"frames": [ SubResource( 7 ) ],
 "loop": true,
 "name": "fall",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 16 ) ],
+"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
 "loop": true,
-"name": "wall_hang",
-"speed": 5.0
+"name": "move",
+"speed": 8.0
 }, {
-"frames": [ SubResource( 18 ) ],
+"frames": [ SubResource( 14 ) ],
 "loop": true,
 "name": "jump",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 9 ) ],
+"frames": [ SubResource( 15 ) ],
 "loop": true,
-"name": "move",
-"speed": 8.0
+"name": "wall_hang",
+"speed": 5.0
 } ]
 
 [node name="Player" type="KinematicBody2D"]
@@ -114,22 +114,38 @@ script = ExtResource( 4 )
 
 [node name="PlayerAirState" type="Node2D" parent="PlayerStateMachine"]
 script = ExtResource( 6 )
+JUMP_SPEED = 200.0
+MAX_X_SPEED = 200.0
+MAX_Y_SPEED = 300.0
 animated_sprite = NodePath("../AnimatedSprite")
+MOVE_SPEED = 20.0
 wall_check_ray = NodePath("../WallCheckRay")
 
 [node name="PlayerIdleState" type="Node2D" parent="PlayerStateMachine"]
 script = ExtResource( 5 )
+JUMP_SPEED = 200.0
+MAX_X_SPEED = 200.0
+MAX_Y_SPEED = 300.0
 animated_sprite = NodePath("../AnimatedSprite")
 
 [node name="PlayerMoveState" type="Node2D" parent="PlayerStateMachine"]
 rotation = 1.16744
 script = ExtResource( 3 )
+JUMP_SPEED = 200.0
+MAX_X_SPEED = 200.0
+MAX_Y_SPEED = 300.0
 animated_sprite = NodePath("../AnimatedSprite")
+MOVE_SPEED = 20.0
 
 [node name="PlayerWallHangState" type="Node2D" parent="PlayerStateMachine"]
 rotation = 1.16744
 script = ExtResource( 7 )
+JUMP_SPEED = 200.0
+MAX_X_SPEED = 200.0
+MAX_Y_SPEED = 300.0
 animated_sprite = NodePath("../AnimatedSprite")
+WALL_JUMP_VECTOR = Vector2( 100, -200 )
+WALL_HANG_COOLDOWN = 0.5
 wall_check_ray = NodePath("../WallCheckRay")
 
 [node name="WallCheckRay" type="RayCast2D" parent="PlayerStateMachine"]
@@ -139,5 +155,5 @@ collision_mask = 17
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="PlayerStateMachine"]
 position = Vector2( -2, -1 )
-frames = SubResource( 15 )
+frames = SubResource( 16 )
 animation = "idle"
