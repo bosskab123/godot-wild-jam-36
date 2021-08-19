@@ -52,42 +52,42 @@ __meta__ = {
 
 [node name="SecondaryBackground1" type="Sprite" parent="Background"]
 position = Vector2( 213.5, 150 )
-z_index = -3
+z_index = -4
 texture = ExtResource( 5 )
 
 [node name="SecondaryBackground2" type="Sprite" parent="Background"]
 position = Vector2( 213.5, 150 )
-z_index = -3
+z_index = -4
 texture = ExtResource( 5 )
 
 [node name="SecondaryBackground3" type="Sprite" parent="Background"]
 position = Vector2( 213.5, 150 )
-z_index = -3
+z_index = -4
 texture = ExtResource( 5 )
 
 [node name="SecondaryBackground4" type="Sprite" parent="Background"]
 position = Vector2( 213.5, 150 )
-z_index = -3
+z_index = -4
 texture = ExtResource( 5 )
 
 [node name="PrimaryBackground1" type="Sprite" parent="Background"]
 position = Vector2( 219.5, 150 )
-z_index = -2
+z_index = -3
 texture = ExtResource( 4 )
 
 [node name="PrimaryBackground2" type="Sprite" parent="Background"]
 position = Vector2( 219.5, 150 )
-z_index = -2
+z_index = -3
 texture = ExtResource( 4 )
 
 [node name="PrimaryBackground3" type="Sprite" parent="Background"]
 position = Vector2( 219.5, 150 )
-z_index = -2
+z_index = -3
 texture = ExtResource( 4 )
 
 [node name="PrimaryBackground4" type="Sprite" parent="Background"]
 position = Vector2( 219.5, 150 )
-z_index = -2
+z_index = -3
 texture = ExtResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]

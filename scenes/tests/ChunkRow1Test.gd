@@ -1,6 +1,7 @@
 extends Node
 
 var current_chunk: int = 0
+var total_chunk: int = 20
 var current_scene: Node2D
 onready var player: Player = $Player
 
@@ -20,9 +21,9 @@ func _process(delta):
 	$ChunkLabel.text = "Chunk" + str(current_chunk)
 	if Input.is_action_just_pressed("next_chunk"):
 		current_chunk += 1
-		current_chunk = int(clamp(current_chunk,1,10))
+		current_chunk = int(clamp(current_chunk,1,total_chunk))
 		change_scene()
 	elif Input.is_action_just_pressed("previous_chunk"):
 		current_chunk -= 1
-		current_chunk = int(clamp(current_chunk,1,10))
+		current_chunk = int(clamp(current_chunk,1,total_chunk))
 		change_scene()
