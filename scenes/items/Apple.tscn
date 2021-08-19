@@ -4,10 +4,10 @@
 [ext_resource path="res://scenes/items/AppleTexture.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/items/PoisionAppleMaterial.tres" type="Material" id=3]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=1]
 radius = 8.0
 
-[sub_resource type="ViewportTexture" id=3]
+[sub_resource type="ViewportTexture" id=2]
 viewport_path = NodePath("Viewport")
 
 [node name="Apple" type="Area2D"]
@@ -25,11 +25,21 @@ render_target_v_flip = true
 [node name="AppleTexture" parent="Viewport" instance=ExtResource( 2 )]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = ExtResource( 3 )
 position = Vector2( 0.105114, -0.105112 )
-texture = SubResource( 3 )
+texture = SubResource( 2 )
+
+[node name="RespawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="RottenTimer" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="Tween" type="Tween" parent="."]
 
 [connection signal="body_entered" from="." to="." method="_on_Apple_body_entered"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_RespawnTimer_timeout"]
+[connection signal="timeout" from="RottenTimer" to="." method="_on_RottenTimer_timeout"]

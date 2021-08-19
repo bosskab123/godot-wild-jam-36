@@ -1,31 +1,70 @@
 extends Area2D
 
-onready var player: Player = get_tree().get_root().find_node("Player",true,false) as Player
-
-var GOOD_APPLE_ENERGY: float = 40
+var GOOD_APPLE_ENERGY: float = 20
 var BAD_APPLE_ENERGY: float = -40
 var energy: float = GOOD_APPLE_ENERGY
-var REDUCED_SIZE_FACTOR: float = 0.75
-var FADEOUT_TIME: float = 0.5
+var FADEOUT_TIME: float = 0.3
+var shader_weight: float = 0
+
+var is_ate_by_player: bool = false setget set_is_ate_by_player 
+var is_spawnable: bool = false
+
+func _ready():
+	var scene = get_tree().current_scene
+	get_tree().current_scene.connect("chunk_spawned", self, "on_chunk_spawned")
+
+func on_chunk_spawned() -> void:
+	if is_spawnable and randi() % 4 == 0:
+		set_is_ate_by_player(false)
+
+func _process(delta):
+	$Sprite.material.set_shader_param("weight", shader_weight)
 
 func _on_Apple_body_entered(body: Node2D):
 	match body.name:
 		"Player":
-			player_eat_Apple()
+			player_eat_Apple(body)
 		"Worm":
 			worm_eat_Apple(body)
 		_:
-			print("Unexpected body enter apple:" + body.name)		
-			
-func player_eat_Apple():
+			printerr("Unexpected body enter apple:" + body.name)		
+
+func set_is_ate_by_player(val):
+	if val:
+		# fake dequeue apple
+		$RespawnTimer.start()
+		is_spawnable = false
+		set_deferred("monitoring", false)
+		self.hide()
+	else:
+		# respawn apple
+		shader_weight = 0
+		energy = GOOD_APPLE_ENERGY
+		set_deferred("monitoring", true)
+		self.show()
+	is_ate_by_player = val
+
+func player_eat_Apple(player):
 	if player:
 		player.energy += energy
-	self.queue_free()
-		
+		set_is_ate_by_player(true)
+
 func worm_eat_Apple(worm: Node2D):
 	energy = BAD_APPLE_ENERGY
-	self.scale *= REDUCED_SIZE_FACTOR
-	worm.is_eating = true
-	# Change sprite
-	$Sprite.material.set_shader_param("weight", 1)
+	worm.set_is_eating(true)
 	
+	# Change sprite
+	$Tween.interpolate_property(self, "shader_weight", 0, 1,
+		FADEOUT_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Tween.start()
+	
+	$RottenTimer.start()
+
+func _on_RespawnTimer_timeout():
+	is_spawnable = true
+
+func _on_RottenTimer_timeout():
+	energy = GOOD_APPLE_ENERGY
+	$Tween.interpolate_property(self, "shader_weight", 1, 0,
+		FADEOUT_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Tween.start()

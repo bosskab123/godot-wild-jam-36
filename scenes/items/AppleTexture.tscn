@@ -6,7 +6,7 @@
 [node name="AppleTexture" type="Spatial"]
 
 [node name="apple" parent="." instance=ExtResource( 2 )]
-transform = Transform( 0.90143, -0.148073, -0.406833, 0, 0.939693, -0.342019, 0.432938, 0.308308, 0.84707, 0, -0.091, 0 )
+transform = Transform( -0.716363, -0.238643, -0.655664, 0, 0.939693, -0.342019, 0.697737, -0.245009, -0.673165, 0, -0.091, 0 )
 script = ExtResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
@@ -33,9 +33,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, -0.031, 0.103 )
 light_color = Color( 0.784314, 0.168627, 0.168627, 1 )
 omni_range = 0.2
 omni_attenuation = 1.46409
+omni_shadow_mode = 0
 
 [node name="OmniLight4" type="OmniLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.189985 )
 light_color = Color( 0.784314, 0.168627, 0.168627, 1 )
 omni_range = 0.2
 omni_attenuation = 1.46409
+omni_shadow_mode = 0

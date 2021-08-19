@@ -30,6 +30,8 @@ var secondary_background_width: float = 240
 var secondary_background_length: float = 427
 var background_y_position: float = 80
 
+signal chunk_spawned()
+
 func _ready():
 	# Initialize background
 	setup_background()
@@ -66,7 +68,6 @@ func setup_background():
 	
 func add_chunk():
 	# Random a chunk to be added
-	randomize()
 	available_chunks.shuffle()
 	var chunk_number = available_chunks.pop_back()
 	showing_chunk_number.append(chunk_number)
@@ -74,6 +75,7 @@ func add_chunk():
 	for row in range(GlobalVars.ROWS_NUMBER):
 		GameManager.chunk_rows[row][chunk_number-1].position.x = total_chunk * (GlobalVars.CHUNK_LENGTH + GlobalVars.PADDING_LENGTH)
 		GameManager.chunk_rows[row][chunk_number-1].position.y = row_position_map[row].position.y
+		emit_signal("chunk_spawned")
 	# Increase the number of total chunk
 	total_chunk += 1
 

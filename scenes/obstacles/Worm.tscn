@@ -43,15 +43,15 @@ region = Rect2( 224, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 2 )
-region = Rect2( 96, 32, 32, 32 )
+region = Rect2( 128, 32, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 2 )
-region = Rect2( 128, 32, 32, 32 )
+region = Rect2( 64, 32, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 2 )
-region = Rect2( 64, 32, 32, 32 )
+region = Rect2( 96, 32, 32, 32 )
 
 [sub_resource type="SpriteFrames" id=14]
 animations = [ {
@@ -62,18 +62,18 @@ animations = [ {
 }, {
 "frames": [ SubResource( 11 ) ],
 "loop": true,
-"name": "fly",
+"name": "fall",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 12 ) ],
 "loop": true,
-"name": "fall",
-"speed": 5.0
+"name": "jump",
+"speed": 8.0
 }, {
 "frames": [ SubResource( 13 ) ],
 "loop": true,
-"name": "jump",
-"speed": 8.0
+"name": "fly",
+"speed": 5.0
 } ]
 
 [node name="Worm" type="KinematicBody2D"]
@@ -97,4 +97,12 @@ animation = "idle"
 frame = 2
 playing = true
 
+[node name="RespawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="DeadTimer" type="Timer" parent="."]
+wait_time = 5.0
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_RespawnTimer_timeout"]
+[connection signal="timeout" from="DeadTimer" to="." method="_on_DeadTimer_timeout"]
