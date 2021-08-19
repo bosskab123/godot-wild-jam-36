@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/MainGame.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/sprites/Tiny Platformer - Forest Asset Pack/Background/Layer_01.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/Tiny Platformer - Forest Asset Pack/Background/Layer_02.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/Tiny Platformer - Forest Asset Pack/Background/Layer_03.png" type="Texture" id=6]
+[ext_resource path="res://scenes/obstacles/DeadFloor.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 480 )
@@ -124,7 +125,11 @@ zoom = Vector2( 0.5, 0.5 )
 [node name="DeadWall" parent="." instance=ExtResource( 3 )]
 position = Vector2( -16, 280 )
 
+[node name="DeadFloor" parent="." instance=ExtResource( 7 )]
+position = Vector2( 192.173, 339.199 )
+
 [connection signal="body_entered" from="Background/PrimaryBackgroundDetector" to="." method="_on_PrimaryBackgroundDetector_body_entered"]
 [connection signal="body_entered" from="Background/SecondaryBackgroundDetector" to="." method="_on_SecondaryBackgroundDetector2_body_entered"]
 [connection signal="body_entered" from="SpawnLine" to="." method="_on_SpawnLine_body_entered"]
 [connection signal="body_entered" from="DestroyLine" to="." method="_on_DestroyLine_body_entered"]
+[connection signal="body_entered" from="DeadFloor" to="DeadFloor" method="_on_DeadFloor_body_entered"]
