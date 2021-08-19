@@ -12,7 +12,7 @@
 [ext_resource path="res://assets/sprites/Tiny Platformer - Forest Asset Pack/Sprites/Player/walk.png" type="Texture" id=10]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 8.0
+radius = 7.0
 height = 12.0
 
 [sub_resource type="AtlasTexture" id=2]
@@ -64,12 +64,12 @@ atlas = ExtResource( 10 )
 region = Rect2( 0, 0, 35, 43 )
 
 [sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 8 )
-region = Rect2( 0, 0, 35, 43 )
-
-[sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 10 )
 region = Rect2( 35, 0, 35, 43 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 35, 43 )
 
 [sub_resource type="SpriteFrames" id=16]
 animations = [ {
@@ -90,13 +90,13 @@ animations = [ {
 }, {
 "frames": [ SubResource( 14 ) ],
 "loop": true,
-"name": "jump",
-"speed": 8.0
+"name": "wall_hang",
+"speed": 5.0
 }, {
 "frames": [ SubResource( 15 ) ],
 "loop": true,
-"name": "wall_hang",
-"speed": 5.0
+"name": "jump",
+"speed": 8.0
 } ]
 
 [node name="Player" type="KinematicBody2D"]
