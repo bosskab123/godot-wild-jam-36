@@ -14,7 +14,7 @@ func _ready():
 	get_tree().current_scene.connect("chunk_spawned", self, "on_chunk_spawned")
 
 func on_chunk_spawned() -> void:
-	if is_spawnable and randi() % 4 == 0:
+	if is_spawnable and randi() % 10 == 0:
 		set_is_ate_by_player(false)
 
 func _process(delta):

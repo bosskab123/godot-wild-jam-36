@@ -10,7 +10,7 @@ var is_jumping: bool = false
 var is_spawnable: bool = false
 
 func on_chunk_spawned() -> void:
-	if is_spawnable and randi() % 4 == 0:
+	if is_spawnable and randi() % 10 == 0:
 		set_is_eating(false)
 
 func _ready():
