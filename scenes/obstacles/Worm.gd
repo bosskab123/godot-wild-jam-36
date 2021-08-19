@@ -32,6 +32,7 @@ func _on_Area2D_body_entered(body):
 		move_vector = calculate_jump_to_apple_vector()
 		rotation = 0
 		is_jumping = true
+		z_index = 0
 	
 func calculate_jump_to_apple_vector() -> Vector2:
 	var t  = TIME_TO_REACH_APPLE
