@@ -9,6 +9,7 @@ var chunk_rows: Array = [] # Each element Contains array of chunkRow
 var initial_chunk_scene: PackedScene = preload("res://scenes/chunks/InitialChunk.tscn")
 
 func _ready():
+	randomize()
 	connect("game_start", self, "on_game_start")
 	connect("game_over", self, "on_game_over")
 
