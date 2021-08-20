@@ -83,11 +83,12 @@ func _on_SpawnLine_body_entered(body):
 	if body.name != "Player":
 		return
 	# Adjust the showing_chunk_number to be size less than 4
+	print(showing_chunk_number)
 	if len(showing_chunk_number) > 4:
 		var chunk_number = showing_chunk_number.pop_front()
 		available_chunks.append(chunk_number)
 		# Adjust Deadwall position
-		$DeadWall.position.x = (total_chunk-2) * (GlobalVars.CHUNK_LENGTH + GlobalVars.PADDING_LENGTH)
+		$DeadWall.position.x = max((total_chunk-2) * (GlobalVars.CHUNK_LENGTH + GlobalVars.PADDING_LENGTH),$DeadWall.position.x)
 	# Reposition a chunk for the next one
 	add_chunk()
 	# Move the SpawnLine
