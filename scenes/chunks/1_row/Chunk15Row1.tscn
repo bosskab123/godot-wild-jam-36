@@ -769,6 +769,9 @@ position = Vector2( 392, 200 )
 [node name="Spring2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 216, 200 )
 
+[node name="Spring3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 216, 200 )
+
 [node name="Worm" parent="." instance=ExtResource( 4 )]
 position = Vector2( 323.933, 112 )
 rotation = -1.57079

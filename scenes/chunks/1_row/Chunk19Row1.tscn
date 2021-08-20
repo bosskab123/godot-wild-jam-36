@@ -766,7 +766,7 @@ position = Vector2( 416, 136 )
 
 [node name="Worm" parent="." instance=ExtResource( 4 )]
 position = Vector2( 296, 132.005 )
-TIME_TO_REACH_APPLE = 0.5
+TIME_TO_REACH_APPLE = 0.6
 apple = NodePath("../Apple2")
 
 [node name="Mud" parent="." instance=ExtResource( 5 )]

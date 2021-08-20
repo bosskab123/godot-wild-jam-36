@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/items/Apple.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/ForsestTileMap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/obstacles/Worm.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/sprites/Tiny Platformer - Forest Asset Pack/Tileset(16x16)/Tileset.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/Tiny Platformer - Forest Asset Pack/Props/props.png" type="Texture" id=5]
+[ext_resource path="res://scenes/obstacles/Spring.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -762,7 +763,10 @@ position = Vector2( 256, 160 )
 [node name="Apple3" parent="." instance=ExtResource( 1 )]
 position = Vector2( 320, 192 )
 
+[node name="Spring" parent="." instance=ExtResource( 6 )]
+position = Vector2( 216, 104 )
+
 [node name="Worm" parent="." instance=ExtResource( 3 )]
 position = Vector2( 408, 179.929 )
-TIME_TO_REACH_APPLE = 0.5
+TIME_TO_REACH_APPLE = 0.8
 apple = NodePath("../Apple3")
