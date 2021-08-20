@@ -20,6 +20,8 @@ func get_move_vector():
 
 func energy_set(new_var):
 	energy = clamp(new_var, 0, MAX_ENERGY)
+	$PlayerUI.on_energy_updated(energy)
 
 func calculate_energy(delta):
 	energy -= delta * ENERGY_DRAIN_RATE
+	$PlayerUI.on_energy_updated(energy)

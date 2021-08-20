@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/sprites/Enchanted Forest Characters with animations.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 114.771, 370.023 )
+extents = Vector2( 39.4249, 370.023 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 2 )
@@ -53,7 +53,7 @@ shape = SubResource( 1 )
 position = Vector2( -37.7549, -217.091 )
 scale = Vector2( 12, 12 )
 frames = SubResource( 8 )
-frame = 1
+frame = 5
 playing = true
 
 [connection signal="body_entered" from="." to="." method="_on_DeadWall_body_entered"]

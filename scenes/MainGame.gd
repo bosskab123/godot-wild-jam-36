@@ -16,6 +16,8 @@ onready var background_detector_node = {
 	"secondary": $Background/SecondaryBackgroundDetector
 }
 
+onready var score = $CanvasLayer/VBoxContainer/Score as Label
+
 var total_chunk: int = 2
 var showing_chunk_number: Array = []
 var available_chunks: Array = []
@@ -54,6 +56,9 @@ func _ready():
 		add_child(initial_chunk_instance)
 	# Set up spawnline
 	$SpawnLine.position.x = (GlobalVars.CHUNK_LENGTH + GlobalVars.PADDING_LENGTH) * 1
+
+func _process(delta):
+	score.text = str(($Player.position.x-92.466) * 3.478)
 
 func setup_background():
 	# Setup primary and secondary background

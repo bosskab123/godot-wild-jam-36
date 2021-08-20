@@ -46,7 +46,7 @@ func set_is_ate_by_player(val):
 
 func player_eat_Apple(player):
 	if player:
-		player.energy += energy
+		player.energy_set(energy+player.energy)
 		set_is_ate_by_player(true)
 
 func worm_eat_Apple(worm: Node2D):
