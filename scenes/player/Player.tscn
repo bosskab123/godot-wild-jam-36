@@ -44,31 +44,31 @@ atlas = ExtResource( 10 )
 region = Rect2( 35, 0, 35, 43 )
 
 [sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 10 )
-region = Rect2( 70, 0, 35, 43 )
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 35, 43 )
 
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 10 )
-region = Rect2( 105, 0, 35, 43 )
+region = Rect2( 35, 0, 35, 43 )
 
 [sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 10 )
-region = Rect2( 140, 0, 35, 43 )
+region = Rect2( 70, 0, 35, 43 )
 
 [sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 10 )
-region = Rect2( 175, 0, 35, 43 )
+region = Rect2( 105, 0, 35, 43 )
 
 [sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 10 )
-region = Rect2( 0, 0, 35, 43 )
+region = Rect2( 140, 0, 35, 43 )
 
 [sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 10 )
-region = Rect2( 35, 0, 35, 43 )
+region = Rect2( 175, 0, 35, 43 )
 
 [sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 8 )
+atlas = ExtResource( 10 )
 region = Rect2( 0, 0, 35, 43 )
 
 [sub_resource type="SpriteFrames" id=16]
@@ -83,25 +83,26 @@ animations = [ {
 "name": "fall",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
-"loop": true,
-"name": "move",
-"speed": 8.0
-}, {
-"frames": [ SubResource( 14 ) ],
+"frames": [ SubResource( 8 ) ],
 "loop": true,
 "name": "wall_hang",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 15 ) ],
+"frames": [ SubResource( 9 ) ],
 "loop": true,
 "name": "jump",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
+"loop": true,
+"name": "move",
 "speed": 8.0
 } ]
 
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 16
 script = ExtResource( 2 )
+ENERGY_DRAIN_RATE = 1.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -114,11 +115,11 @@ script = ExtResource( 4 )
 
 [node name="PlayerAirState" type="Node2D" parent="PlayerStateMachine"]
 script = ExtResource( 6 )
-JUMP_SPEED = 200.0
-MAX_X_SPEED = 200.0
+JUMP_SPEED = 250.0
+MAX_X_SPEED = 125.0
 MAX_Y_SPEED = 300.0
 animated_sprite = NodePath("../AnimatedSprite")
-MOVE_SPEED = 20.0
+MOVE_SPEED = 10.0
 wall_check_ray = NodePath("../WallCheckRay")
 
 [node name="PlayerIdleState" type="Node2D" parent="PlayerStateMachine"]
@@ -131,20 +132,20 @@ animated_sprite = NodePath("../AnimatedSprite")
 [node name="PlayerMoveState" type="Node2D" parent="PlayerStateMachine"]
 rotation = 1.16744
 script = ExtResource( 3 )
-JUMP_SPEED = 200.0
-MAX_X_SPEED = 200.0
+JUMP_SPEED = 220.0
+MAX_X_SPEED = 125.0
 MAX_Y_SPEED = 300.0
 animated_sprite = NodePath("../AnimatedSprite")
-MOVE_SPEED = 20.0
+MOVE_SPEED = 12.0
 
 [node name="PlayerWallHangState" type="Node2D" parent="PlayerStateMachine"]
 rotation = 1.16744
 script = ExtResource( 7 )
 JUMP_SPEED = 200.0
-MAX_X_SPEED = 200.0
+MAX_X_SPEED = 150.0
 MAX_Y_SPEED = 300.0
 animated_sprite = NodePath("../AnimatedSprite")
-WALL_JUMP_VECTOR = Vector2( 100, -200 )
+WALL_JUMP_VECTOR = Vector2( 80, -200 )
 WALL_HANG_COOLDOWN = 0.5
 wall_check_ray = NodePath("../WallCheckRay")
 

@@ -7,7 +7,7 @@ var move_vector setget set_move_vector, get_move_vector
 # Energy System
 export(float) var MAX_ENERGY: float = 100
 export(float) var ENERGY_DRAIN_RATE: float = 2 # per sec
-var energy: float = MAX_ENERGY setget energy_set
+var energy: float = MAX_ENERGY - 20 setget energy_set
 
 func _process(delta):
 	calculate_energy(delta)
