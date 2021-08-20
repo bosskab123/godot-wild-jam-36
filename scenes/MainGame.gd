@@ -16,12 +16,12 @@ onready var background_detector_node = {
 	"secondary": $Background/SecondaryBackgroundDetector
 }
 
-var total_chunk: int = 3
+var total_chunk: int = 2
 var showing_chunk_number: Array = []
 var available_chunks: Array = []
-var total_primary_background: int = 3
+var total_primary_background: int = 4
 var showing_primary_background_number: Array = [1,2,3,4]
-var total_secondary_background: int = 3
+var total_secondary_background: int = 4
 var showing_secondary_background_number: Array = [1,2,3,4]
 
 var primary_background_width: float = 535
@@ -47,15 +47,13 @@ func _ready():
 		for chunk in range(GlobalVars.CHUNKS_NUMBER):
 			add_child(GameManager.chunk_rows[row][chunk])
 	# Initialize 3 initial chunks to be the starting point
-	for block in range(3):
+	for block in range(total_chunk):
 		var initial_chunk_instance = GameManager.initial_chunk_scene.instance()
 		initial_chunk_instance.position.x = block * (GlobalVars.CHUNK_LENGTH + GlobalVars.PADDING_LENGTH)
 		initial_chunk_instance.position.y = row_position_map[0].position.y
 		add_child(initial_chunk_instance)
-	# Add Deadwall at the origin
-	
 	# Set up spawnline
-	$SpawnLine.position.x = (GlobalVars.CHUNK_LENGTH + GlobalVars.PADDING_LENGTH) * 2
+	$SpawnLine.position.x = (GlobalVars.CHUNK_LENGTH + GlobalVars.PADDING_LENGTH) * 1
 
 func setup_background():
 	# Setup primary and secondary background
@@ -83,7 +81,6 @@ func _on_SpawnLine_body_entered(body):
 	if body.name != "Player":
 		return
 	# Adjust the showing_chunk_number to be size less than 4
-	print(showing_chunk_number)
 	if len(showing_chunk_number) > 4:
 		var chunk_number = showing_chunk_number.pop_front()
 		available_chunks.append(chunk_number)
