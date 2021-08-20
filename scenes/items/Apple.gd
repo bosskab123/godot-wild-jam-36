@@ -1,6 +1,6 @@
 extends Area2D
 
-var GOOD_APPLE_ENERGY: float = 20
+var GOOD_APPLE_ENERGY: float = 30
 var BAD_APPLE_ENERGY: float = -40
 var energy: float = GOOD_APPLE_ENERGY
 var FADEOUT_TIME: float = 0.3
