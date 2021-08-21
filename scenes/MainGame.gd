@@ -17,8 +17,8 @@ onready var background_detector_node = {
 }
 
 onready var score_node = $CanvasLayer/VBoxContainer/Score as Label
-onready var sound_danger: AudioStreamPlayer2D = $Sound/SoundDanger as AudioStreamPlayer2D
-onready var sound_normal: AudioStreamPlayer2D = $Sound/SoundNormal as AudioStreamPlayer2D
+onready var sound_danger: AudioStreamPlayer = $Sound/SoundDanger as AudioStreamPlayer
+onready var sound_normal: AudioStreamPlayer = $Sound/SoundNormal as AudioStreamPlayer
 onready var deadwall = $DeadWall
 
 var sound_danger_lastest_position: float
