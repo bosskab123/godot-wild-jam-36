@@ -52,16 +52,16 @@ __meta__ = {
 }
 
 [node name="RestartButton" type="Button" parent="VBoxContainer"]
-margin_top = 165.0
+margin_top = 164.0
 margin_right = 200.0
-margin_bottom = 200.0
+margin_bottom = 199.0
 custom_fonts/font = SubResource( 2 )
 text = "Restart"
 
 [node name="MainMenuButton" type="Button" parent="VBoxContainer"]
-margin_top = 240.0
+margin_top = 239.0
 margin_right = 200.0
-margin_bottom = 275.0
+margin_bottom = 274.0
 custom_fonts/font = SubResource( 3 )
 text = "main menu"
 

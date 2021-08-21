@@ -54,6 +54,7 @@ shape = SubResource( 1 )
 position = Vector2( -37.7549, -217.091 )
 scale = Vector2( 12, 12 )
 frames = SubResource( 8 )
+frame = 5
 playing = true
 
 [node name="SoundWalk" type="AudioStreamPlayer2D" parent="."]
