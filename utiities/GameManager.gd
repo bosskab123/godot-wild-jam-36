@@ -29,8 +29,12 @@ func on_game_start():
 	get_tree().change_scene_to(GAME_SCENE)
 
 func on_game_over():
+	# Play game over sound
+	var sound_game_over = get_tree().get_root().find_node("SoundGameOver",true,false)
+	sound_game_over.play()
+	# Pause every object in the scene
 	print("Game Over")
 	get_tree().paused = true
-		
+	# Show end game UI
 	var end_game_ui_instance = END_SCENE.instance()
 	add_child(end_game_ui_instance)

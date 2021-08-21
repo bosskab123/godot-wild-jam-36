@@ -17,6 +17,7 @@ func _process(_delta):
 
 	if Input.is_action_just_pressed("jump"):
 		state_machine.move_vector.y = -JUMP_SPEED
+		player.sound_jump.play()
 		
 	if !player.is_on_floor():
 		change_state.call_func("air")

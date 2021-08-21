@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://scenes/uis/PlayerUI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/player/Player.gd" type="Script" id=2]
@@ -10,8 +10,10 @@
 [ext_resource path="res://assets/sprites/Tiny Platformer - Forest Asset Pack/Sprites/Player/idle.png" type="Texture" id=8]
 [ext_resource path="res://assets/sprites/Tiny Platformer - Forest Asset Pack/Sprites/Player/fall.png" type="Texture" id=9]
 [ext_resource path="res://assets/sprites/Tiny Platformer - Forest Asset Pack/Sprites/Player/walk.png" type="Texture" id=10]
-[ext_resource path="res://assets/sound/player_eat_bad_apple.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/sound/player-eat-bad-apple.wav" type="AudioStream" id=11]
 [ext_resource path="res://assets/sound/player-walk-grass.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/sound/player-jump.wav" type="AudioStream" id=13]
+[ext_resource path="res://assets/sound/game-eat-good-apple.wav" type="AudioStream" id=14]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 7.0
@@ -38,11 +40,11 @@ atlas = ExtResource( 8 )
 region = Rect2( 140, 0, 35, 43 )
 
 [sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 8 )
 region = Rect2( 0, 0, 35, 43 )
 
 [sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 8 )
+atlas = ExtResource( 9 )
 region = Rect2( 0, 0, 35, 43 )
 
 [sub_resource type="AtlasTexture" id=9]
@@ -82,12 +84,12 @@ animations = [ {
 }, {
 "frames": [ SubResource( 7 ) ],
 "loop": true,
-"name": "fall",
+"name": "jump",
 "speed": 8.0
 }, {
 "frames": [ SubResource( 8 ) ],
 "loop": true,
-"name": "jump",
+"name": "fall",
 "speed": 8.0
 }, {
 "frames": [ SubResource( 9 ) ],
@@ -163,9 +165,18 @@ animation = "idle"
 
 [node name="Sound" type="Node2D" parent="."]
 
-[node name="SoundEatBadApple" type="AudioStreamPlayer2D" parent="Sound"]
+[node name="SoundEatBadApple" type="AudioStreamPlayer" parent="Sound"]
 stream = ExtResource( 11 )
+volume_db = -10.0
+
+[node name="SoundEatGoodApple" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource( 14 )
+volume_db = -15.146
 
 [node name="SoundWalkGrass" type="AudioStreamPlayer" parent="Sound"]
 stream = ExtResource( 12 )
 volume_db = -8.577
+
+[node name="SoundJump" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource( 13 )
+volume_db = -30.0
