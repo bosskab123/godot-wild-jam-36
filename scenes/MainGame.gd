@@ -25,7 +25,7 @@ onready var player = $Player
 var sound_danger_lastest_position: float
 var sound_normal_lastest_position: float
 
-var total_chunk: int = 2
+var total_chunk: int = 1
 var showing_chunk_number: Array = []
 var available_chunks: Array = []
 var total_primary_background: int = 4
@@ -61,14 +61,14 @@ func _ready():
 	for row in range(GlobalVars.ROWS_NUMBER):
 		for chunk in range(GlobalVars.CHUNKS_NUMBER):
 			add_child(GameManager.chunk_rows[row][chunk])
-	# Initialize 3 initial chunks to be the starting point
-	for block in range(total_chunk):
+	# Initialize 1 initial chunks to be the starting point
+	for block in range(1):
 		var initial_chunk_instance = GameManager.initial_chunk_scene.instance()
 		initial_chunk_instance.position.x = block * (GlobalVars.CHUNK_LENGTH + GlobalVars.PADDING_LENGTH)
 		initial_chunk_instance.position.y = row_position_map[0].position.y
 		add_child(initial_chunk_instance)
 	# Set up spawnline
-	$SpawnLine.position.x = (GlobalVars.CHUNK_LENGTH + GlobalVars.PADDING_LENGTH) * 1
+	$SpawnLine.position.x = (GlobalVars.CHUNK_LENGTH + GlobalVars.PADDING_LENGTH) * .3
 	# Play background sound
 	sound_normal.play()
 
