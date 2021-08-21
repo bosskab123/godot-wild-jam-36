@@ -19,6 +19,7 @@ onready var background_detector_node = {
 onready var score_node = $CanvasLayer/VBoxContainer/Score as Label
 onready var sound_danger: AudioStreamPlayer = $Sound/SoundDanger as AudioStreamPlayer
 onready var sound_normal: AudioStreamPlayer = $Sound/SoundNormal as AudioStreamPlayer
+onready var sound_game_over: AudioStreamPlayer = $Sound/SoundGameOver as AudioStreamPlayer
 onready var deadwall = $DeadWall
 onready var player = $Player
 
@@ -43,7 +44,7 @@ var score: int = 0
 var SCORE_MULTIPLIER: float = 0.678
 var PLAYER_INITIAL_POSITION = Vector2(92.466,176)
 
-var DIFFICULTY_MOVEMENT_MULTIPLIER: float = 0
+var DIFFICULTY_MOVEMENT_MULTIPLIER: float = 1.03
 
 signal chunk_spawned()
 
@@ -112,8 +113,8 @@ func _on_SpawnLine_body_entered(body):
 	# Move the SpawnLine
 	$SpawnLine.position.x += GlobalVars.CHUNK_LENGTH + GlobalVars.PADDING_LENGTH
 	# Increase MOVEMENT DIFFICULTY
-	player.set_move_vector(player.get_move_vector()*(pow(2,sqrt(total_chunk))))
-	deadwall.MOVE_SPEED *= pow(total_chunk,0.005)
+	player.set_move_vector(player.get_move_vector() * DIFFICULTY_MOVEMENT_MULTIPLIER )
+	deadwall.MOVE_SPEED *= DIFFICULTY_MOVEMENT_MULTIPLIER
 	
 
 func _on_DestroyLine_body_entered(body):

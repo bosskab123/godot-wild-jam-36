@@ -49,6 +49,8 @@ func player_eat_Apple(player):
 		player.energy_set(energy+player.energy)
 		if energy < 0:
 			player.sound_eat_bad_apple.play()
+		else:
+			player.sound_eat_good_apple.play()
 		set_is_ate_by_player(true)
 
 func worm_eat_Apple(worm: Node2D):
