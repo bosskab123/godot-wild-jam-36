@@ -16,7 +16,7 @@ onready var background_detector_node = {
 	"secondary": $Background/SecondaryBackgroundDetector
 }
 
-onready var score_node = $CanvasLayer/VBoxContainer/Score as Label
+onready var score_node = $CanvasLayer/TextureRect/VBoxContainer/Score as Label
 onready var sound_danger: AudioStreamPlayer = $Sound/SoundDanger as AudioStreamPlayer
 onready var sound_normal: AudioStreamPlayer = $Sound/SoundNormal as AudioStreamPlayer
 onready var sound_game_over: AudioStreamPlayer = $Sound/SoundGameOver as AudioStreamPlayer
@@ -69,7 +69,7 @@ func _ready():
 		initial_chunk_instance.position.y = row_position_map[0].position.y
 		add_child(initial_chunk_instance)
 	# Set up spawnline
-	$SpawnLine.position.x = (GlobalVars.CHUNK_LENGTH + GlobalVars.PADDING_LENGTH) * .3
+	$SpawnLine.position.x = (GlobalVars.CHUNK_LENGTH + GlobalVars.PADDING_LENGTH) * .15
 	# Play background sound
 	sound_normal.play()
 

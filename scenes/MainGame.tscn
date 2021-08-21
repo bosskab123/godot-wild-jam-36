@@ -38,41 +38,41 @@ __meta__ = {
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-margin_left = 855.15
-margin_top = 28.449
-margin_right = 975.15
-margin_bottom = 108.449
+anchor_left = 0.95
+anchor_top = 0.05
+anchor_right = 1.0
+anchor_bottom = 0.05
+margin_left = -120.0
+margin_bottom = 80.0
 texture = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
-anchor_left = 1.0
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TextureRect"]
+anchor_left = 0.1
 anchor_right = 1.0
-margin_left = -159.782
-margin_top = 37.9051
-margin_right = -103.782
-margin_bottom = 101.905
+anchor_bottom = 1.0
 custom_constants/separation = 28
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Title" type="Label" parent="CanvasLayer/VBoxContainer"]
-margin_right = 56.0
-margin_bottom = 18.0
+[node name="Title" type="Label" parent="CanvasLayer/TextureRect/VBoxContainer"]
+margin_top = 8.0
+margin_right = 154.0
+margin_bottom = 26.0
 custom_fonts/font = SubResource( 1 )
 text = "Distance"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Score" type="Label" parent="CanvasLayer/VBoxContainer"]
-margin_top = 46.0
-margin_right = 56.0
-margin_bottom = 64.0
+[node name="Score" type="Label" parent="CanvasLayer/TextureRect/VBoxContainer"]
+margin_top = 54.0
+margin_right = 154.0
+margin_bottom = 72.0
 custom_fonts/font = SubResource( 2 )
 text = "0"
 __meta__ = {
@@ -150,7 +150,7 @@ texture = ExtResource( 4 )
 position = Vector2( 72, 176 )
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
-position = Vector2( -128, -128 )
+position = Vector2( -128, -112 )
 remote_path = NodePath("../../Camera2D")
 
 [node name="Row2SpawnPosition" type="Position2D" parent="."]
@@ -172,7 +172,7 @@ position = Vector2( 485, 240 )
 shape = SubResource( 5 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( -56, 48 )
+position = Vector2( -56, 64 )
 anchor_mode = 0
 current = true
 zoom = Vector2( 0.375, 0.375 )
