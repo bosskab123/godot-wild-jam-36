@@ -60,8 +60,9 @@ func worm_eat_Apple(worm: Node2D):
 	$Tween.interpolate_property(self, "shader_weight", 0, 1,
 		FADEOUT_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.start()
-	
 	$RottenTimer.start()
+	yield($Tween, "tween_all_completed")
+	$Particles2D.emitting = true
 
 func _on_RespawnTimer_timeout():
 	is_spawnable = true
@@ -71,3 +72,4 @@ func _on_RottenTimer_timeout():
 	$Tween.interpolate_property(self, "shader_weight", 1, 0,
 		FADEOUT_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.start()
+	$Particles2D.emitting = false
