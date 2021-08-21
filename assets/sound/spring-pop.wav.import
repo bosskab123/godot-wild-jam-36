@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/spring-jump.wav-bd6c4bbe9db4f0981ad095a82c191892.sample"
+path="res://.import/spring-pop.wav-a963f420bc63bcc5dfb235536e2c4cea.sample"
 
 [deps]
 
-source_file="res://assets/sound/spring-jump.wav"
-dest_files=[ "res://.import/spring-jump.wav-bd6c4bbe9db4f0981ad095a82c191892.sample" ]
+source_file="res://assets/sound/spring-pop.wav"
+dest_files=[ "res://.import/spring-pop.wav-a963f420bc63bcc5dfb235536e2c4cea.sample" ]
 
 [params]
 

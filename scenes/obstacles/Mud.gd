@@ -21,7 +21,9 @@ func _physics_process(delta):
 	if player_on_mud == true:
 		player.move_vector.x *= SLOW_X_FACTOR
 		player.move_vector.y *= SLOW_Y_FACTOR
-		if player.move_vector.x != 0:
+		if player.move_vector.x != 0 and not sound_walk_mud.playing:
 			sound_walk_mud.play()
+		elif player.move_vector.x == 0 and sound_walk_mud.playing:
+			sound_walk_mud.stop()
 	else:
 		sound_walk_mud.stop()
