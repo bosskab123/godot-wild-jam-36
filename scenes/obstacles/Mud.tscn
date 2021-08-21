@@ -37,6 +37,7 @@ animation = "pressed"
 
 [node name="SoundWalkMud" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
+volume_db = -12.636
 
 [connection signal="body_entered" from="." to="." method="_on_Mud_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Mud_body_exited"]

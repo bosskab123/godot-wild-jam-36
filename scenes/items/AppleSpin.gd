@@ -1,4 +1,3 @@
-tool
 extends Spatial
 
 func _process(delta):

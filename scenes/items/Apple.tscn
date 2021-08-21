@@ -1,14 +1,32 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/items/Apple.gd" type="Script" id=1]
 [ext_resource path="res://scenes/items/AppleTexture.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/items/PoisionAppleMaterial.tres" type="Material" id=3]
+[ext_resource path="res://assets/sprites/Skull&Bones - FrodoUndead.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 8.0
 
 [sub_resource type="ViewportTexture" id=2]
 viewport_path = NodePath("Viewport")
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 1.4, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+emission_shape = 1
+emission_sphere_radius = 10.0
+flag_disable_z = true
+gravity = Vector3( 0, -16, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.1
+scale_curve = SubResource( 4 )
+color = Color( 0.643137, 0.356863, 1, 1 )
 
 [node name="Apple" type="Area2D"]
 collision_layer = 0
@@ -39,6 +57,14 @@ wait_time = 5.0
 wait_time = 10.0
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 0, -2.74004 )
+emitting = false
+amount = 5
+speed_scale = 0.7
+process_material = SubResource( 5 )
+texture = ExtResource( 4 )
 
 [connection signal="body_entered" from="." to="." method="_on_Apple_body_entered"]
 [connection signal="timeout" from="RespawnTimer" to="." method="_on_RespawnTimer_timeout"]
