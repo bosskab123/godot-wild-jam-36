@@ -42,5 +42,6 @@ func physics_process(_delta):
 	state_machine.move_vector.y += GlobalVars.GRAVITY
 	state_machine.move_vector.x = clamp(state_machine.move_vector.x, -MAX_X_SPEED, MAX_X_SPEED)
 	state_machine.move_vector.y = clamp(state_machine.move_vector.y, -MAX_Y_SPEED, MAX_Y_SPEED)
-		
+	
 	state_machine.move_vector = player.move_and_slide(state_machine.move_vector, Vector2.UP)
+
