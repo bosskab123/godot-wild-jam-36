@@ -40,11 +40,11 @@ atlas = ExtResource( 8 )
 region = Rect2( 140, 0, 35, 43 )
 
 [sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 8 )
+atlas = ExtResource( 9 )
 region = Rect2( 0, 0, 35, 43 )
 
 [sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 8 )
 region = Rect2( 0, 0, 35, 43 )
 
 [sub_resource type="AtlasTexture" id=9]
@@ -84,12 +84,12 @@ animations = [ {
 }, {
 "frames": [ SubResource( 7 ) ],
 "loop": true,
-"name": "jump",
+"name": "fall",
 "speed": 8.0
 }, {
 "frames": [ SubResource( 8 ) ],
 "loop": true,
-"name": "fall",
+"name": "jump",
 "speed": 8.0
 }, {
 "frames": [ SubResource( 9 ) ],
@@ -112,6 +112,7 @@ ENERGY_DRAIN_RATE = 1.5
 shape = SubResource( 1 )
 
 [node name="PlayerUI" parent="." instance=ExtResource( 1 )]
+pause_mode = 2
 player = NodePath("..")
 
 [node name="PlayerStateMachine" type="Node2D" parent="."]
@@ -171,12 +172,12 @@ volume_db = -10.0
 
 [node name="SoundEatGoodApple" type="AudioStreamPlayer" parent="Sound"]
 stream = ExtResource( 14 )
-volume_db = -15.146
+volume_db = -17.576
 
 [node name="SoundWalkGrass" type="AudioStreamPlayer" parent="Sound"]
 stream = ExtResource( 12 )
-volume_db = -8.577
+volume_db = -17.845
 
 [node name="SoundJump" type="AudioStreamPlayer" parent="Sound"]
 stream = ExtResource( 13 )
-volume_db = -30.0
+volume_db = -40.692
