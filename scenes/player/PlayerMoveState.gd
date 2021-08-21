@@ -20,3 +20,13 @@ func _process(_delta):
 		
 	if !player.is_on_floor():
 		change_state.call_func("air")
+
+	handle_walk_sound()
+	
+func handle_walk_sound():
+	if state_machine.move_vector.x != 0 and !player.is_on_mud and player.is_on_floor() and !player.sound_walk_grass.playing:
+		print("start playing walk grass")
+		player.sound_walk_grass.play()
+	elif state_machine.move_vector.x == 0 or player.is_on_mud or !player.is_on_floor():
+		print("stop playing walk grass")
+		player.sound_walk_grass.stop()

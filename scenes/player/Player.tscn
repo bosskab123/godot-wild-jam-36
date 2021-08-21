@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://scenes/uis/PlayerUI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/player/Player.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/sprites/Tiny Platformer - Forest Asset Pack/Sprites/Player/fall.png" type="Texture" id=9]
 [ext_resource path="res://assets/sprites/Tiny Platformer - Forest Asset Pack/Sprites/Player/walk.png" type="Texture" id=10]
 [ext_resource path="res://assets/sound/player_eat_bad_apple.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/sound/player-walk-grass.wav" type="AudioStream" id=12]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 7.0
@@ -164,3 +165,7 @@ animation = "idle"
 
 [node name="SoundEatBadApple" type="AudioStreamPlayer2D" parent="Sound"]
 stream = ExtResource( 11 )
+
+[node name="SoundWalkGrass" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource( 12 )
+volume_db = -8.577
