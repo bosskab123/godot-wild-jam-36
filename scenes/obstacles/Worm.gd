@@ -3,6 +3,8 @@ extends KinematicBody2D
 export(float) var TIME_TO_REACH_APPLE = 1 # sec
 export(NodePath) onready var apple = get_node(apple) as Node2D
 
+onready var sound_eat_apple: AudioStreamPlayer2D = $SoundEatApple as AudioStreamPlayer2D
+
 onready var initial_transform: Transform2D = self.transform
 var move_vector: Vector2 = Vector2.ZERO
 var is_eating: bool = false setget set_is_eating

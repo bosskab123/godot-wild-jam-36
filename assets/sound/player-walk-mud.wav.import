@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/player-walk-mud.wav-c8b2bdf70e8dc2092284e99af973f547.sample"
+
+[deps]
+
+source_file="res://assets/sound/player-walk-mud.wav"
+dest_files=[ "res://.import/player-walk-mud.wav-c8b2bdf70e8dc2092284e99af973f547.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

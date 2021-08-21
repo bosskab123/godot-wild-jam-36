@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/deadwall-walk.wav-1ffe25cb9c7a141be8b8a16d4d47cdb5.sample"
+
+[deps]
+
+source_file="res://assets/sound/deadwall-walk.wav"
+dest_files=[ "res://.import/deadwall-walk.wav-1ffe25cb9c7a141be8b8a16d4d47cdb5.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

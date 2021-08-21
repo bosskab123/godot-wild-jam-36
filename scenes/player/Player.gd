@@ -9,6 +9,9 @@ export(float) var MAX_ENERGY: float = 100
 export(float) var ENERGY_DRAIN_RATE: float = 2 # per sec
 var energy: float = MAX_ENERGY - 20 setget energy_set
 
+# Sound system
+onready var sound_eat_bad_apple: AudioStreamPlayer2D = $Sound/SoundEatBadApple as AudioStreamPlayer2D
+
 func _process(delta):
 	calculate_energy(delta)
 

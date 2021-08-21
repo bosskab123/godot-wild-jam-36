@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/MainGame.gd" type="Script" id=2]
@@ -8,14 +8,23 @@
 [ext_resource path="res://assets/sprites/Tiny Platformer - Forest Asset Pack/Background/Layer_03.png" type="Texture" id=6]
 [ext_resource path="res://scenes/obstacles/DeadFloor.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/sprites/sign.png" type="Texture" id=8]
+[ext_resource path="res://assets/fonts/EvilEmpire-4BBVK.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://assets/sound/game-danger.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/sound/game-normal.wav" type="AudioStream" id=11]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10, 480 )
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 9 )
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 10, 464 )
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 9 )
 
 [sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 10, 480 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 10, 464 )
+
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 10, 464 )
 
 [node name="MainGame" type="Node2D"]
@@ -33,14 +42,17 @@ margin_top = 28.449
 margin_right = 975.15
 margin_bottom = 108.449
 texture = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -158.195
-margin_top = 41.8736
-margin_right = -102.195
-margin_bottom = 97.8736
+margin_left = -159.782
+margin_top = 37.9051
+margin_right = -103.782
+margin_bottom = 101.905
 custom_constants/separation = 28
 alignment = 1
 __meta__ = {
@@ -49,16 +61,18 @@ __meta__ = {
 
 [node name="Title" type="Label" parent="CanvasLayer/VBoxContainer"]
 margin_right = 56.0
-margin_bottom = 14.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 1 )
 text = "Distance"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Score" type="Label" parent="CanvasLayer/VBoxContainer"]
-margin_top = 42.0
+margin_top = 46.0
 margin_right = 56.0
-margin_bottom = 56.0
+margin_bottom = 64.0
+custom_fonts/font = SubResource( 2 )
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -70,13 +84,13 @@ __meta__ = {
 position = Vector2( 439, 240 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/PrimaryBackgroundDetector"]
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="SecondaryBackgroundDetector" type="Area2D" parent="Background"]
 position = Vector2( 427, 240 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/SecondaryBackgroundDetector"]
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="SkyBackground" type="CanvasLayer" parent="Background"]
 layer = -99
@@ -148,13 +162,13 @@ position = Vector2( 0, 240 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnLine"]
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 
 [node name="DestroyLine" type="Area2D" parent="."]
 position = Vector2( 485, 240 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DestroyLine"]
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( -163.534, 16 )
@@ -167,11 +181,24 @@ limit_smoothed = true
 [node name="DeadWall" parent="." instance=ExtResource( 3 )]
 position = Vector2( -232.706, 280 )
 
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="DeadWall"]
+position = Vector2( 204.338, 0 )
+
 [node name="DeadFloor" parent="." instance=ExtResource( 7 )]
 position = Vector2( 192.173, 368.863 )
+
+[node name="Sound" type="Node2D" parent="."]
+
+[node name="SoundDanger" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource( 10 )
+
+[node name="SoundNormal" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource( 11 )
 
 [connection signal="body_entered" from="Background/PrimaryBackgroundDetector" to="." method="_on_PrimaryBackgroundDetector_body_entered"]
 [connection signal="body_entered" from="Background/SecondaryBackgroundDetector" to="." method="_on_SecondaryBackgroundDetector2_body_entered"]
 [connection signal="body_entered" from="SpawnLine" to="." method="_on_SpawnLine_body_entered"]
 [connection signal="body_entered" from="DestroyLine" to="." method="_on_DestroyLine_body_entered"]
+[connection signal="screen_entered" from="DeadWall/VisibilityNotifier2D" to="." method="_on_DeadWall_screen_entered"]
+[connection signal="screen_exited" from="DeadWall/VisibilityNotifier2D" to="." method="_on_DeadWall_screen_exited"]
 [connection signal="body_entered" from="DeadFloor" to="DeadFloor" method="_on_DeadFloor_body_entered"]

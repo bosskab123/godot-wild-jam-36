@@ -47,12 +47,15 @@ func set_is_ate_by_player(val):
 func player_eat_Apple(player):
 	if player:
 		player.energy_set(energy+player.energy)
+		if energy < 0:
+			player.sound_eat_bad_apple.play()
 		set_is_ate_by_player(true)
 
 func worm_eat_Apple(worm: Node2D):
 	energy = BAD_APPLE_ENERGY
 	worm.set_is_eating(true)
-	
+	if self.is_visible():
+		worm.sound_eat_apple.play()
 	# Change sprite
 	$Tween.interpolate_property(self, "shader_weight", 0, 1,
 		FADEOUT_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)

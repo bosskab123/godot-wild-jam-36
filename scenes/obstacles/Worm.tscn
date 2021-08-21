@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scenes/obstacles/Worm.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/worm/Worm Sprite Sheet.png" type="Texture" id=2]
+[ext_resource path="res://assets/sound/worm_eat_apple.wav" type="AudioStream" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 8.0
@@ -47,11 +48,11 @@ region = Rect2( 128, 32, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 2 )
-region = Rect2( 64, 32, 32, 32 )
+region = Rect2( 96, 32, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 2 )
-region = Rect2( 96, 32, 32, 32 )
+region = Rect2( 64, 32, 32, 32 )
 
 [sub_resource type="SpriteFrames" id=14]
 animations = [ {
@@ -67,13 +68,13 @@ animations = [ {
 }, {
 "frames": [ SubResource( 12 ) ],
 "loop": true,
-"name": "jump",
-"speed": 8.0
+"name": "fly",
+"speed": 5.0
 }, {
 "frames": [ SubResource( 13 ) ],
 "loop": true,
-"name": "fly",
-"speed": 5.0
+"name": "jump",
+"speed": 8.0
 } ]
 
 [node name="Worm" type="KinematicBody2D"]
@@ -94,7 +95,7 @@ shape = SubResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 14 )
 animation = "idle"
-frame = 2
+frame = 4
 playing = true
 
 [node name="RespawnTimer" type="Timer" parent="."]
@@ -102,6 +103,9 @@ wait_time = 5.0
 
 [node name="DeadTimer" type="Timer" parent="."]
 wait_time = 5.0
+
+[node name="SoundEatApple" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="RespawnTimer" to="." method="_on_RespawnTimer_timeout"]

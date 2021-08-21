@@ -16,7 +16,13 @@ onready var background_detector_node = {
 	"secondary": $Background/SecondaryBackgroundDetector
 }
 
-onready var score = $CanvasLayer/VBoxContainer/Score as Label
+onready var score_node = $CanvasLayer/VBoxContainer/Score as Label
+onready var sound_danger: AudioStreamPlayer2D = $Sound/SoundDanger as AudioStreamPlayer2D
+onready var sound_normal: AudioStreamPlayer2D = $Sound/SoundNormal as AudioStreamPlayer2D
+onready var deadwall = $DeadWall
+
+var sound_danger_lastest_position: float
+var sound_normal_lastest_position: float
 
 var total_chunk: int = 2
 var showing_chunk_number: Array = []
@@ -26,11 +32,15 @@ var showing_primary_background_number: Array = [1,2,3,4]
 var total_secondary_background: int = 4
 var showing_secondary_background_number: Array = [1,2,3,4]
 
-var primary_background_width: float = 535
-var primary_background_length: float = 438
-var secondary_background_width: float = 240
-var secondary_background_length: float = 427
-var background_y_position: float = 80
+var PRIMARY_BACKGROUND_WIDTH: float = 535
+var PRIMARY_BACKGROUND_LENGTH: float = 438
+var SECONDARY_BACKGROUND_WIDTH: float = 240
+var SECONDARY_BACKGROUND_LENGTH: float = 427
+var BACKGROUND_POSITION_Y: float = 80
+
+var score: int = 0
+var SCORE_MULTIPLIER: float = 0.678
+var PLAYER_INITIAL_POSITION = Vector2(92.466,176)
 
 signal chunk_spawned()
 
@@ -56,18 +66,21 @@ func _ready():
 		add_child(initial_chunk_instance)
 	# Set up spawnline
 	$SpawnLine.position.x = (GlobalVars.CHUNK_LENGTH + GlobalVars.PADDING_LENGTH) * 1
+	# Play background sound
+	sound_normal.play()
 
 func _process(delta):
-	score.text = str(($Player.position.x-92.466) * 3.478)
+	score = max(score, int($Player.position.x - PLAYER_INITIAL_POSITION.x) * SCORE_MULTIPLIER)
+	score_node.text = str(int(score * SCORE_MULTIPLIER))
 
 func setup_background():
 	# Setup primary and secondary background
 	for i in range(4):
-		background_node["primary"][i].position = Vector2((i*2+1)*(primary_background_length/2),background_y_position)
-		background_node["secondary"][i].position = Vector2((i*2+1)*(secondary_background_length/2),background_y_position)
+		background_node["primary"][i].position = Vector2((i*2+1)*(PRIMARY_BACKGROUND_LENGTH/2),BACKGROUND_POSITION_Y)
+		background_node["secondary"][i].position = Vector2((i*2+1)*(SECONDARY_BACKGROUND_LENGTH/2),BACKGROUND_POSITION_Y)
 	# Setup PrimaryBackgroundDetector and SecondaryBackgroundDetector position
-	background_detector_node["primary"].position = Vector2(3*primary_background_length,240)
-	background_detector_node["secondary"].position = Vector2(3*secondary_background_length,240)
+	background_detector_node["primary"].position = Vector2(3*PRIMARY_BACKGROUND_LENGTH,240)
+	background_detector_node["secondary"].position = Vector2(3*SECONDARY_BACKGROUND_LENGTH,240)
 	
 func add_chunk():
 	# Random a chunk to be added
@@ -109,16 +122,34 @@ func _on_PrimaryBackgroundDetector_body_entered(body):
 	if body.name != "Player":
 		return
 	# Move the most left background to the most right one
-	background_node["primary"][showing_primary_background_number[0]-1].position.x += 4*primary_background_length
+	background_node["primary"][showing_primary_background_number[0]-1].position.x += 4*PRIMARY_BACKGROUND_LENGTH
 	showing_primary_background_number.append(showing_primary_background_number.pop_front())
 	# Move PrimaryBackgroundDetector
-	background_detector_node["primary"].position.x += primary_background_length
+	background_detector_node["primary"].position.x += PRIMARY_BACKGROUND_LENGTH
 
 func _on_SecondaryBackgroundDetector2_body_entered(body):
 	if body.name != "Player":
 		return
 	# Move the most left background to the most right one
-	background_node["secondary"][showing_secondary_background_number[0]-1].position.x += 4*secondary_background_length
+	background_node["secondary"][showing_secondary_background_number[0]-1].position.x += 4*SECONDARY_BACKGROUND_LENGTH
 	showing_secondary_background_number.append(showing_secondary_background_number.pop_front())
 	# Move SecondaryBackgroundDetector
-	background_detector_node["secondary"].position.x += secondary_background_length
+	background_detector_node["secondary"].position.x += SECONDARY_BACKGROUND_LENGTH
+
+func _on_DeadWall_screen_entered():
+	# Change background music
+	if sound_normal.playing:
+		sound_normal_lastest_position = sound_normal.get_playback_position()
+		sound_normal.stop()
+	sound_danger.play(sound_danger_lastest_position)
+	# Start deadwall sound
+	deadwall.sound_walk.play()
+
+func _on_DeadWall_screen_exited():
+	# Change background music
+	sound_danger_lastest_position = sound_danger.get_playback_position()
+	sound_danger.stop()
+	# Stop deadwall sound
+	deadwall.sound_walk.stop()
+	# Resume normal sound
+	sound_normal.play(sound_normal_lastest_position)

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/spring-jump.wav-bd6c4bbe9db4f0981ad095a82c191892.sample"
+
+[deps]
+
+source_file="res://assets/sound/spring-jump.wav"
+dest_files=[ "res://.import/spring-jump.wav-bd6c4bbe9db4f0981ad095a82c191892.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
