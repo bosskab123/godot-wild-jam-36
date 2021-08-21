@@ -66,14 +66,17 @@ func set_is_eating(val):
 		self.show()
 	else:
 		# fake queue_free worm
+		sound_eat_apple.play()
 		set_deferred("monitorable", false)
 		$Area2D.set_deferred("monitoring", false)
-		self.hide()
 		$RespawnTimer.start()
+		self.hide()
 	is_eating = val
 
 func _on_RespawnTimer_timeout():
 	is_spawnable = true
 
 func _on_DeadTimer_timeout():
-	set_is_eating(true)
+	set_deferred("monitorable", false)
+	$Area2D.set_deferred("monitoring", false)
+	self.hide()

@@ -19,7 +19,7 @@ func load_chunk():
 		var chunk_row = []
 		for chunk in range(1,GlobalVars.CHUNKS_NUMBER+1):
 			var chunk_instance: Node2D = load("res://scenes/chunks/"+str(row)+"_row/Chunk"+str(chunk)+"Row"+str(row)+".tscn").instance()
-			chunk_instance.position.x = -1000
+			chunk_instance.position.x = -1000 * chunk
 			chunk_row.append(chunk_instance)
 		chunk_rows.append(chunk_row)
 
