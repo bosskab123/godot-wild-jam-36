@@ -190,11 +190,13 @@ position = Vector2( 192.173, 368.863 )
 
 [node name="Sound" type="Node2D" parent="."]
 
-[node name="SoundDanger" type="AudioStreamPlayer2D" parent="Sound"]
+[node name="SoundDanger" type="AudioStreamPlayer" parent="Sound"]
 stream = ExtResource( 10 )
+volume_db = -15.459
 
-[node name="SoundNormal" type="AudioStreamPlayer2D" parent="Sound"]
+[node name="SoundNormal" type="AudioStreamPlayer" parent="Sound"]
 stream = ExtResource( 11 )
+volume_db = -16.865
 
 [connection signal="body_entered" from="Background/PrimaryBackgroundDetector" to="." method="_on_PrimaryBackgroundDetector_body_entered"]
 [connection signal="body_entered" from="Background/SecondaryBackgroundDetector" to="." method="_on_SecondaryBackgroundDetector2_body_entered"]
