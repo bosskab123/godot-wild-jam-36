@@ -20,11 +20,13 @@ onready var score_node = $CanvasLayer/TextureRect/VBoxContainer/Score as Label
 onready var sound_danger: AudioStreamPlayer = $Sound/SoundDanger as AudioStreamPlayer
 onready var sound_normal: AudioStreamPlayer = $Sound/SoundNormal as AudioStreamPlayer
 onready var sound_game_over: AudioStreamPlayer = $Sound/SoundGameOver as AudioStreamPlayer
+onready var sound_tween: Tween = $Sound/Tween
+
+onready var sound_danger_initial_volume: float = sound_danger.volume_db
+onready var sound_normal_initial_volume: float = sound_normal.volume_db
+
 onready var deadwall = $DeadWall
 onready var player = $Player
-
-var sound_danger_lastest_position: float
-var sound_normal_lastest_position: float
 
 var total_chunk: int = 1
 var showing_chunk_number: Array = []
@@ -70,7 +72,9 @@ func _ready():
 		add_child(initial_chunk_instance)
 	# Set up spawnline
 	$SpawnLine.position.x = (GlobalVars.CHUNK_LENGTH + GlobalVars.PADDING_LENGTH) * .15
-	# Play background sound
+		# Initialize Musics
+	sound_danger.play()
+	sound_danger.volume_db = -80
 	sound_normal.play()
 
 func _process(delta):
@@ -145,19 +149,25 @@ func _on_SecondaryBackgroundDetector2_body_entered(body):
 	background_detector_node["secondary"].position.x += SECONDARY_BACKGROUND_LENGTH
 
 func _on_DeadWall_screen_entered():
-	# Change background music
-	if sound_normal.playing:
-		sound_normal_lastest_position = sound_normal.get_playback_position()
-		sound_normal.stop()
-	sound_danger.play(sound_danger_lastest_position)
-	# Start deadwall sound
-	deadwall.sound_walk.play()
+	sound_tween.stop_all()
+	sound_tween.interpolate_property(
+		sound_normal, "volume_db", null, 
+		-80, 2, Tween.TRANS_LINEAR
+	)
+	sound_tween.interpolate_property(
+		sound_danger, "volume_db", null, 
+		sound_danger_initial_volume, 1, Tween.TRANS_LINEAR
+	)
+	sound_tween.start()
 
 func _on_DeadWall_screen_exited():
-	# Change background music
-	sound_danger_lastest_position = sound_danger.get_playback_position()
-	sound_danger.stop()
-	# Stop deadwall sound
-	deadwall.sound_walk.stop()
-	# Resume normal sound
-	sound_normal.play(sound_normal_lastest_position)
+	sound_tween.stop_all()
+	sound_tween.interpolate_property(
+		sound_danger, "volume_db", null, 
+		-80, 2, Tween.TRANS_LINEAR
+	)
+	sound_tween.interpolate_property(
+		sound_normal, "volume_db", null, 
+		sound_normal_initial_volume, 1, Tween.TRANS_LINEAR
+	)
+	sound_tween.start()

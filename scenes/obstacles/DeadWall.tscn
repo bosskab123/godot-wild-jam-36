@@ -54,13 +54,13 @@ shape = SubResource( 1 )
 position = Vector2( -37.7549, -217.091 )
 scale = Vector2( 12, 12 )
 frames = SubResource( 8 )
-frame = 5
+frame = 3
 playing = true
 
 [node name="SoundWalk" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
 volume_db = -1.903
 pitch_scale = 0.61
-attenuation = 3.73213
+attenuation = 7.20999
 
 [connection signal="body_entered" from="." to="." method="_on_DeadWall_body_entered"]

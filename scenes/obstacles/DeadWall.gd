@@ -3,6 +3,9 @@ extends Area2D
 export(float) var MOVE_SPEED = 1
 onready var sound_walk: AudioStreamPlayer2D = $SoundWalk as AudioStreamPlayer2D
 
+func _ready():
+	sound_walk.play()
+
 func _physics_process(delta):
 	position.x += MOVE_SPEED
 
